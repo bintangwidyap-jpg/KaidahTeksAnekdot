@@ -1,0 +1,1571 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Belajar Kaidah Anekdot</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Aplikasi belajar santai soal kaidah bahasa teks anekdot untuk kelas X. Bisa dibuka tanpa internet.">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232563eb'/%3E%3Ctext x='32' y='44' font-size='36' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3EA%3C/text%3E%3C/svg%3E">
+<style>
+/* Tampilan: biru langit yang ringan, kartu putih membulat, hiasan lucu. Cocok buat anak SMA. */
+:root {
+  --bg: #eef5ff; --dot: #d3e3ff; --surface: #ffffff; --surface2: #eaf2ff; --soft: #dbeafe;
+  --ink: #1b2a4a; --muted: #4a5a7d; --line: #cfe0fb;
+  --primary: #2563eb; --primary-h: #1d4ed8; --primary-d: #1e40af; --on-primary: #ffffff;
+  --navy: #ffffff; --navy2: #2563eb; --on-navy: #1b2a4a; --navy-soft: #dbeafe;
+  --ok: #0b6b3f; --ok-bg: #e0f4e9; --bad: #a82218; --bad-bg: #fdeceb;
+  --warn: #6f4300; --warn-bg: #fff4d1; --info-bg: #e6efff;
+  --mark: #ffe58a; --focus: #1d4ed8; --shadow: 0 2px 0 rgba(37, 99, 235, .08), 0 8px 22px rgba(37, 99, 235, .08);
+  --hero1: #dbeafe; --hero2: #b9d5fd; --hero-ink: #14305f; --toast: #1b2a4a;
+  --font: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1a33; --dot: #16264a; --surface: #14243f; --surface2: #1a2e52; --soft: #213a69;
+    --ink: #e8f0ff; --muted: #b3c1e8; --line: #2c4478;
+    --primary: #7aa5ff; --primary-h: #9bbcff; --primary-d: #b9d0ff; --on-primary: #08142e;
+    --navy: #14243f; --navy2: #2d5fd8; --on-navy: #e8f0ff; --navy-soft: #213a69;
+    --ok: #6fe0a8; --ok-bg: #0f3a2a; --bad: #ffa399; --bad-bg: #44191a;
+    --warn: #ffd98a; --warn-bg: #43320a; --info-bg: #182c55;
+    --mark: #6b5300; --focus: #a9c4ff; --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    --hero1: #1b3166; --hero2: #234187; --hero-ink: #eaf1ff; --toast: #2d4a85; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1a33; --dot: #16264a; --surface: #14243f; --surface2: #1a2e52; --soft: #213a69;
+  --ink: #e8f0ff; --muted: #b3c1e8; --line: #2c4478;
+  --primary: #7aa5ff; --primary-h: #9bbcff; --primary-d: #b9d0ff; --on-primary: #08142e;
+  --navy: #14243f; --navy2: #2d5fd8; --on-navy: #e8f0ff; --navy-soft: #213a69;
+  --ok: #6fe0a8; --ok-bg: #0f3a2a; --bad: #ffa399; --bad-bg: #44191a;
+  --warn: #ffd98a; --warn-bg: #43320a; --info-bg: #182c55;
+  --mark: #6b5300; --focus: #a9c4ff; --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  --hero1: #1b3166; --hero2: #234187; --hero-ink: #eaf1ff; --toast: #2d4a85; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 16.5px; line-height: 1.6; -webkit-text-size-adjust: 100%; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--navy); }
+h1, h2, h3 { line-height: 1.25; margin: 0 0 .5em; text-wrap: balance; letter-spacing: -.01em; }
+h1 { font-size: clamp(1.6rem, 4.5vw, 2.2rem); }
+h2 { font-size: 1.28rem; }
+h3 { font-size: 1.05rem; margin-top: 1em; }
+p { margin: 0 0 .8em; }
+a { color: var(--primary); }
+mark { background: var(--mark); color: inherit; padding: 0 .18em; border-radius: 4px; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 6px; }
+.skip { position: absolute; left: 8px; top: -60px; z-index: 100; background: var(--primary); color: var(--on-primary); padding: 10px 14px; border-radius: 8px; }
+.skip:focus { top: calc(8px + env(safe-area-inset-top, 0px)); }
+
+.app { display: grid; grid-template-columns: 296px minmax(0, 1fr); min-height: 100vh; }
+.side { position: sticky; top: 0; height: 100vh; overflow-y: auto; background: var(--navy); color: var(--on-navy); padding: calc(18px + env(safe-area-inset-top, 0px)) 14px 24px max(14px, env(safe-area-inset-left, 0px)); }
+.side :focus-visible { outline-color: #fff; }
+.brand { display: flex; gap: 12px; align-items: center; padding: 4px 6px 16px; border-bottom: 1px solid rgba(255, 255, 255, .18); margin-bottom: 8px; }
+.logo { flex: none; width: 44px; height: 44px; border-radius: 12px; background: #fff; color: #1d4ed8; display: grid; place-items: center; font-weight: 800; font-size: 1.3rem; }
+.brand b { display: block; line-height: 1.2; font-size: 1.02rem; }
+.brand small { opacity: .85; font-size: .82rem; }
+.ng { margin: 18px 8px 6px; font-size: .74rem; text-transform: uppercase; letter-spacing: .09em; color: #b8cbff; font-weight: 700; }
+.side ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.side a { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 8px 10px; border-radius: 10px; color: #fff; text-decoration: none; font-size: .97rem; }
+.side a:hover { background: rgba(255, 255, 255, .1); }
+.side a[aria-current="page"] { background: #fff; color: #0a2463; font-weight: 700; }
+.side a span { flex: 1; min-width: 0; }
+.side .tick { flex: none; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #3ddc97; color: #04301d; }
+.side .tick svg { width: 14px; height: 14px; }
+
+.col { min-width: 0; display: flex; flex-direction: column; }
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--navy); color: #fff; display: flex; align-items: center; gap: 10px; min-height: 56px; padding-block: 8px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.top :focus-visible { outline-color: #fff; }
+.top .ttl { flex: 1; min-width: 0; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.iconbtn { min-width: 44px; min-height: 44px; border-radius: 10px; border: 0; background: rgba(255, 255, 255, .12); color: #fff; display: grid; place-items: center; cursor: pointer; }
+.iconbtn:hover { background: rgba(255, 255, 255, .22); }
+#menuBtn { display: none; }
+.net { font-size: .8rem; font-weight: 700; padding: 5px 10px; border-radius: 999px; background: rgba(255, 255, 255, .14); white-space: nowrap; }
+.net.on::before, .net.off::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; background: #3ddc97; }
+.net.off::before { background: #ffc857; }
+.main { width: 100%; max-width: 960px; margin: 0 auto; padding-block: 24px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 18px; outline: none; }
+.main:focus, h1[tabindex="-1"]:focus, #ph:focus, [tabindex="-1"]:focus-visible { outline: none; }
+.stack { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.scrim { display: none; }
+
+.phead { padding: 2px 0 2px; }
+.eyebrow { margin: 0 0 6px; font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--primary); }
+.lead { font-size: 1.08rem; color: var(--muted); max-width: 62ch; margin: .4em 0 0; }
+.hint { color: var(--muted); font-size: .92rem; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); min-width: 0; }
+.card > :last-child { margin-bottom: 0; }
+.hero { border-radius: 22px; color: #fff; background: radial-gradient(900px 340px at 85% -10%, #3d6bff 0%, rgba(61, 107, 255, 0) 60%), linear-gradient(135deg, #0a2463 0%, #123a9c 55%, #1d4ed8 100%); padding: clamp(22px, 5vw, 44px); }
+.hero .eyebrow { color: #cfe0ff; }
+.hero h1 { color: #fff; max-width: 20ch; margin-bottom: .3em; }
+.hero .lead { color: #e3ecff; }
+.hero :focus-visible { outline-color: #fff; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 14px; }
+.row.sb { justify-content: space-between; margin-top: 0; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.tpcard { background: var(--surface2); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+.tpcard p { font-size: .94rem; }
+
+.btn { font: inherit; font-weight: 700; min-height: 44px; padding: 10px 18px; border-radius: 12px; border: 2px solid transparent; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; line-height: 1.2; text-align: center; }
+.btn.primary { background: var(--primary); color: var(--on-primary); }
+.btn.primary:hover { background: var(--primary-h); }
+.btn.ghost { background: transparent; color: var(--primary); border-color: var(--primary); }
+.btn.ghost:hover { background: var(--soft); }
+.btn.light { background: #fff; color: #0a2463; }
+.btn.light:hover { background: #e3ecff; }
+.btn.outline { background: transparent; color: #fff; border-color: #fff; }
+.btn.outline:hover { background: rgba(255, 255, 255, .14); }
+.btn.link { background: transparent; color: var(--primary); text-decoration: underline; padding: 6px 8px; min-height: 36px; }
+.btn.danger { background: var(--bad-bg); color: var(--bad); border-color: var(--bad); }
+.btn:disabled { opacity: .55; cursor: not-allowed; }
+
+.chip { display: inline-block; font-size: .8rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--surface2); border: 1px solid var(--line); color: var(--ink); line-height: 1.5; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: .8em; }
+.chip.lv { background: var(--soft); color: var(--ink); border-color: var(--primary); }
+.chip.k-mahir { background: var(--ok-bg); color: var(--ok); border-color: var(--ok); }
+.chip.k-cakap { background: var(--info-bg); color: var(--primary); border-color: var(--primary); }
+.chip.k-mulai { background: var(--warn-bg); color: var(--warn); border-color: var(--warn); }
+.chip.k-belum { background: var(--bad-bg); color: var(--bad); border-color: var(--bad); }
+
+.callout { border-radius: 12px; padding: 12px 16px; border: 1px solid var(--line); margin: 12px 0; }
+.callout p { margin: .25em 0 0; }
+.callout.info { background: var(--info-bg); border-color: var(--primary); }
+.callout.ok { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); }
+.callout.ok p, .callout.ok strong { color: var(--ok); }
+.callout.warn { background: var(--warn-bg); border-color: var(--warn); color: var(--warn); }
+
+.field { display: flex; flex-direction: column; gap: 6px; margin: 12px 0; min-width: 0; }
+label { font-weight: 600; }
+textarea, input[type="text"], input[type="url"], input[type="search"], select { font: inherit; width: 100%; min-height: 44px; padding: 10px 12px; border-radius: 10px; border: 2px solid var(--line); background: var(--surface); color: var(--ink); }
+textarea { resize: vertical; min-height: 90px; }
+textarea:read-only { background: var(--surface2); }
+textarea:focus, input:focus, select:focus { border-color: var(--primary); }
+.radios { border: 0; padding: 0; margin: 12px 0; min-width: 0; }
+.radios legend { font-weight: 600; padding: 0; margin-bottom: 4px; }
+.opt { display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; border-radius: 10px; min-height: 44px; }
+.opt:hover { background: var(--surface2); }
+.opt input { flex: none; width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--primary); }
+.opt label { font-weight: 500; cursor: pointer; }
+.selfcb { display: flex; gap: 10px; align-items: flex-start; margin: 10px 0; }
+.selfcb input { width: 22px; height: 22px; flex: none; margin-top: 2px; accent-color: var(--primary); }
+.checks { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; margin: 12px 0; }
+.checks legend { font-weight: 700; padding: 0 6px; }
+
+.q { padding: 16px 0; border-top: 1px solid var(--line); }
+.q:first-child { border-top: 0; padding-top: 0; }
+.qhead { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 8px; }
+.qid { font-weight: 800; color: #fff; background: var(--navy2); padding: 2px 12px; border-radius: 8px; font-size: .9rem; }
+.qtext { font-weight: 600; font-size: 1.04rem; }
+.result { margin-top: 12px; }
+.score { margin: 10px 0; font-size: 1.02rem; }
+.plist { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.plist li { display: flex; gap: 10px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); }
+.plist li p { margin: 2px 0 0; font-size: .94rem; }
+.plist li svg { flex: none; margin-top: 2px; }
+.plist li.ok { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); }
+.plist li.bad { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+.plist li .selfcb label { color: var(--ink); font-weight: 500; }
+.det { margin: 10px 0; padding: 8px 12px; border: 1px dashed var(--line); border-radius: 10px; }
+.det summary { cursor: pointer; font-weight: 700; min-height: 32px; }
+.sumbar { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 16px; }
+.sumbar p { margin: 0; }
+.keybox { margin-top: 8px; }
+
+.teks { margin: 0 0 12px; padding: 16px 18px; background: var(--surface2); border-left: 6px solid var(--primary); border-radius: 12px; }
+.teks figcaption { font-weight: 800; margin-bottom: 8px; color: var(--primary); }
+.teks p { margin-bottom: .6em; }
+.segs { display: grid; gap: 8px; margin: 12px 0; }
+.seg { font: inherit; text-align: left; padding: 12px 14px; border-radius: 12px; border: 2px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; min-height: 44px; }
+.seg:hover { border-color: var(--primary); }
+.seg[aria-pressed="true"] { border-color: var(--primary); background: var(--soft); font-weight: 600; }
+.kcards { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
+.kcard { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px; box-shadow: var(--shadow); min-width: 0; }
+.ktext { font-size: 1.05rem; font-weight: 600; }
+.kn { display: block; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--primary); font-weight: 800; }
+.fb { margin-top: 8px; font-size: .94rem; }
+.fb.ok { color: var(--ok); } .fb.bad { color: var(--bad); }
+
+.tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+.tabs button { flex: none; font: inherit; font-weight: 700; min-height: 44px; padding: 8px 14px; border-radius: 999px; border: 2px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.panel { min-width: 0; }
+.pn { margin-top: 18px; }
+.acc { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.acc summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 10px 16px; font-weight: 700; }
+.acc summary::-webkit-details-marker { display: none; }
+.acc summary::after { content: "›"; margin-left: auto; font-size: 1.4rem; transition: transform .2s; }
+.acc[open] summary::after { transform: rotate(90deg); }
+.acc[open] summary { background: var(--surface2); }
+.accb { padding: 14px 16px 16px; }
+.kb { flex: none; width: 32px; height: 32px; border-radius: 9px; background: var(--primary); color: var(--on-primary); display: grid; place-items: center; font-weight: 800; }
+.ex { background: var(--surface2); padding: 8px 12px; border-radius: 10px; }
+.uji { min-height: 120px; }
+.uq { font-size: 1.1rem; font-weight: 700; }
+.bul { margin: 0 0 .8em; padding-left: 1.2em; } .bul li { margin-bottom: .35em; }
+.flow { margin: 0; padding-left: 1.3em; } .flow li { margin-bottom: .5em; }
+.gl dt { font-weight: 800; margin-top: 12px; color: var(--primary); } .gl dd { margin: 2px 0 0; }
+
+.tw { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); max-width: 100%; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: .94rem; }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+thead th { background: var(--soft); font-weight: 800; position: sticky; top: 0; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+tbody th { font-weight: 700; background: var(--surface2); }
+td.q { font-style: italic; border-top: 0; padding: 10px 12px; }
+
+.bar { height: 14px; background: var(--surface2); border: 1px solid var(--line); border-radius: 999px; overflow: hidden; margin: 8px 0; }
+.bar span { display: block; height: 100%; background: var(--primary); border-radius: 999px; transition: width .4s; }
+.bar span.k-mahir { background: #168a54; } .bar span.k-cakap { background: var(--primary); } .bar span.k-mulai { background: #d18a00; } .bar span.k-belum { background: #c53a2f; }
+
+#toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); background: var(--navy); color: #fff; padding: 12px 18px; border-radius: 12px; max-width: min(92vw, 520px); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 90; box-shadow: 0 8px 24px rgba(0, 0, 0, .3); font-weight: 600; }
+#toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+
+/* ===== Gaya ramah SMA (menimpa gaya dasar di atas) ===== */
+body { background-color: var(--bg); background-image: radial-gradient(var(--dot) 1.4px, transparent 1.5px); background-size: 24px 24px; }
+h1, h2 { letter-spacing: -.015em; }
+.side { background: var(--surface); color: var(--ink); border-right: 2px solid var(--line); }
+.side :focus-visible, .top :focus-visible { outline-color: var(--focus); }
+.brand { border-bottom: 2px dashed var(--line); }
+.logo { background: var(--soft); color: var(--primary); font-size: 1.5rem; border-radius: 14px; }
+.brand small { color: var(--muted); opacity: 1; }
+.ng { color: var(--primary-d); }
+.side a { color: var(--ink); border-radius: 14px; }
+.side a:hover { background: var(--surface2); }
+.side a[aria-current="page"] { background: var(--soft); color: var(--primary-d); font-weight: 800; }
+.side .em { flex: none; width: 26px; text-align: center; font-size: 1.15rem; line-height: 1; }
+.side .tick { background: #22c55e; color: #fff; }
+.top { background: var(--surface); color: var(--ink); border-bottom: 2px solid var(--line); }
+.iconbtn { background: var(--soft); color: var(--primary-d); border-radius: 14px; }
+.iconbtn:hover { background: var(--line); }
+.net { background: var(--surface2); color: var(--ink); border: 1px solid var(--line); }
+body::before { background: var(--surface); }
+.card { border: 2px solid var(--line); border-radius: 22px; padding: 22px; }
+.hero { position: relative; overflow: hidden; border-radius: 28px; color: var(--hero-ink); background: linear-gradient(135deg, var(--hero1) 0%, var(--hero2) 100%); border: 2px solid var(--line); padding: clamp(22px, 5vw, 40px); min-height: 250px; }
+.hero .eyebrow { color: var(--primary-d); }
+.hero h1 { color: var(--hero-ink); max-width: 16ch; }
+.hero .lead { color: var(--hero-ink); max-width: 34ch; }
+.hero-in { position: relative; z-index: 1; max-width: 520px; }
+.deco { position: absolute; right: 2%; top: 50%; transform: translateY(-50%); width: min(38%, 330px); pointer-events: none; }
+.deco svg { width: 100%; height: auto; display: block; }
+.btn { border-radius: 999px; }
+.btn.primary { box-shadow: 0 3px 0 var(--primary-d); }
+.btn.primary:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--primary-d); }
+.chip { background: var(--surface2); }
+.qid { background: var(--primary); color: var(--on-primary); border-radius: 999px; }
+.kn { display: inline-block; background: var(--soft); color: var(--primary-d); padding: 2px 10px; border-radius: 999px; margin-bottom: 6px; }
+.kcard { border: 2px solid var(--line); border-radius: 20px; }
+.teks { border-left: 0; border: 2px dashed var(--primary); border-radius: 18px; background: var(--surface2); }
+.teks figcaption::before { content: "💬 "; }
+.acc { border: 2px solid var(--line); border-radius: 18px; }
+.tabs button { border-radius: 999px; border-width: 2px; }
+.callout { border-radius: 16px; border-width: 2px; }
+.sumbar { border: 2px solid var(--line); border-radius: 16px; }
+.tw { border-width: 2px; border-radius: 16px; }
+textarea, input[type="text"], input[type="url"], input[type="search"], select { border-radius: 14px; }
+#toast { background: var(--toast); border-radius: 16px; }
+.skills { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.skill { background: var(--surface2); border: 2px solid var(--line); border-radius: 18px; padding: 16px; }
+.skill .big { font-size: 2rem; line-height: 1; display: block; margin-bottom: 6px; }
+.skill h3 { margin: 0 0 .3em; font-size: 1.05rem; }
+.skill p { margin: 0 0 .6em; font-size: .95rem; }
+.upcard { background: linear-gradient(135deg, var(--surface) 0%, var(--soft) 100%); border-style: dashed; border-color: var(--primary); }
+.upstat { margin: 10px 0 0; font-weight: 600; }
+.upstat.ok { color: var(--ok); } .upstat.bad { color: var(--bad); }
+.confetti { font-size: 1.6rem; letter-spacing: .3em; }
+@media (max-width: 700px) {
+  .deco { position: static; transform: none; width: min(70%, 260px); margin: 12px auto 0; }
+  .hero { min-height: 0; }
+}
+@media (max-width: 959px) {
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .side { position: fixed; z-index: 70; left: 0; top: 0; bottom: 0; height: auto; width: min(86vw, 320px); transform: translateX(-105%); transition: transform .25s; box-shadow: 8px 0 30px rgba(20, 48, 95, .25); }
+  body.navopen .side { transform: none; }
+  body.navopen .scrim { display: block; position: fixed; inset: 0; background: rgba(20, 48, 95, .45); z-index: 65; }
+  #menuBtn { display: grid; }
+  .row2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  .card { padding: 16px; border-radius: 14px; }
+  .btn { width: 100%; }
+  .row .btn { flex: 1 1 100%; }
+  .tabs button { padding: 8px 12px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+@media print {
+  body::before, .side, .top, .scrim, #toast, .btn, .tabs, .skip { display: none !important; }
+  .app { display: block; } .main { max-width: none; padding: 0; } .card, .tw { box-shadow: none; break-inside: avoid; }
+  body { background: #fff; color: #000; }
+}
+.kn { display: table; }
+@media (max-width: 959px) { .side { box-shadow: none; } body.navopen .side { box-shadow: 8px 0 30px rgba(20, 48, 95, .25); } }
+
+[hidden]{display:none!important}
+body{overflow-wrap:break-word}
+.install{border-style:dashed;border-color:var(--primary)}
+.install .det{margin:8px 0}.install ol{margin:6px 0 0;padding-left:1.2em}.install li{margin-bottom:.35em}
+@media (max-width:640px){
+ body{font-size:15.5px}
+ .main{padding-block:12px 40px;gap:12px}.stack{gap:12px}
+ .card{padding:14px}.hero{padding:18px;min-height:0}.hero h1{max-width:none}
+ .deco{width:min(60%,220px)}
+ .top{gap:8px;padding-left:max(10px,env(safe-area-inset-left,0px));padding-right:max(10px,env(safe-area-inset-right,0px))}
+ .net{font-size:.7rem;padding:4px 8px;max-width:34vw;overflow:hidden;text-overflow:ellipsis}
+ .tabs{flex-wrap:wrap;overflow:visible}
+ .tw{overflow:visible;border:0;background:none}
+ table,thead,tbody,tr,th,td{display:block;width:100%;min-width:0}
+ thead{position:absolute;left:-9999px}
+ tr{background:var(--surface);border:2px solid var(--line);border-radius:14px;margin-bottom:10px;padding:4px 0}
+ th,td{border:0;padding:5px 12px;background:none!important}
+ tbody th{font-weight:800;color:var(--primary-d)}
+ td[data-label]:not([data-label=""])::before{content:attr(data-label);display:block;font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+}
+</style>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+<a class="skip" href="#main" onclick="document.getElementById('main').focus()">Lewati ke konten</a>
+<div class="app">
+  <aside class="side" aria-label="Navigasi">
+    <div class="brand"><div class="logo" aria-hidden="true">💬</div><div><b>Belajar Anekdot</b><small>Bahasa Indonesia · Kelas X</small></div></div>
+    <nav id="nav" aria-label="Menu belajar"></nav>
+  </aside>
+  <div class="col">
+    <header class="top">
+      <button class="iconbtn" id="menuBtn" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="nav"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg></button>
+      <div class="ttl">Belajar Anekdot</div>
+      <span class="net on" id="net" role="status">Online</span>
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="Ganti tampilan terang atau gelap"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    </header>
+    <main id="main" class="main" tabindex="-1"></main>
+  </div>
+</div>
+<div class="scrim" id="scrim"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+/* DATA: seluruh isi materi, soal, kunci, dan komponen penskoran (selaras dengan Bahan Ajar Revisi) */
+var D = {};
+
+D.kaidahOpsi = [
+  ['', '— pilih kaidah —'],
+  ['lampau', 'a. Kalimat bermakna lampau'],
+  ['retoris', 'b. Kalimat retoris'],
+  ['temporal', 'c. Konjungsi temporal'],
+  ['sebab', 'd. Konjungsi sebab-akibat'],
+  ['material', 'e. Kata kerja material'],
+  ['dialog', 'f. Kalimat langsung / tidak langsung'],
+  ['majas', 'g. Majas sindiran (ironi, sinisme, sarkasme)']
+];
+D.kaidahNama = { lampau: 'Kalimat bermakna lampau', retoris: 'Kalimat retoris', temporal: 'Konjungsi temporal', sebab: 'Konjungsi sebab-akibat', material: 'Kata kerja material', dialog: 'Kalimat langsung/tidak langsung', majas: 'Majas sindiran', perintah: 'Kalimat perintah/seru' };
+
+D.kaidah = [
+  { id: 'lampau', kode: 'a', nama: 'Kalimat bermakna lampau',
+    pengertian: 'Kalimat yang menceritakan peristiwa yang sudah terjadi.',
+    penanda: ['suatu hari', 'kemarin', 'dahulu', 'tadi pagi', 'sejak Senin lalu', 'sudah', 'telah', 'pernah'],
+    contoh: ['<mark>Suatu pagi</mark>, seorang siswa baru menemui petugas perpustakaan.'],
+    fungsi: 'Menetapkan latar waktu dan menandai bahwa cerita berasal dari suatu kejadian.',
+    awas: 'Bahasa Indonesia tidak mengubah bentuk kata kerja. Makna lampau dibawa oleh keterangan waktu atau kata seperti sudah/telah.' },
+  { id: 'retoris', kode: 'b', nama: 'Kalimat retoris',
+    pengertian: 'Pertanyaan yang tidak terutama meminta jawaban, tetapi menegaskan gagasan, menyindir, atau mengajak berpikir.',
+    penanda: ['bukankah', 'kenapa/apakah (jawaban sudah jelas atau tersirat)', 'tanda tanya'],
+    contoh: ['<mark>Bukankah</mark> piket kelas itu tugas kita bersama, bukan tugas ketua kelas saja?'],
+    fungsi: 'Memperkuat sindiran atau kritik tanpa menyatakannya secara langsung.',
+    awas: 'Uji: apakah penanya benar-benar menunggu jawaban? “Apakah PR sudah kamu kerjakan?” (guru menunggu jawaban) adalah pertanyaan biasa.' },
+  { id: 'temporal', kode: 'c', nama: 'Konjungsi temporal',
+    pengertian: 'Kata hubung yang menandai urutan atau hubungan waktu.',
+    penanda: ['kemudian', 'lalu', 'setelah itu', 'sebelum', 'ketika', 'sesudah', 'sementara itu', 'akhirnya'],
+    contoh: ['Pak Satpam mencatat nama siswa itu, <mark>kemudian</mark> menyuruhnya menunggu di pos.'],
+    fungsi: 'Mengatur urutan kejadian agar alur mudah diikuti. “Akhirnya” sering menandai penutup.',
+    awas: 'Hanya menyatakan urutan waktu, belum tentu sebab-akibat.' },
+  { id: 'sebab', kode: 'd', nama: 'Konjungsi sebab-akibat',
+    pengertian: 'Kata hubung yang menyatakan alasan dan hasil.',
+    penanda: ['karena', 'sebab', 'sehingga', 'akibatnya', 'oleh karena itu', 'maka'],
+    contoh: ['Gerbang sudah ditutup <mark>sehingga</mark> siswa itu harus menunggu di luar.'],
+    fungsi: 'Menjelaskan alasan dan akibat yang membangun situasi atau masalah (krisis).',
+    awas: 'Uji: bisakah disisipi “karena … maka …”? Jika hanya urutan (“lalu”), itu temporal.' },
+  { id: 'material', kode: 'e', nama: 'Kata kerja material',
+    pengertian: 'Kata kerja yang menyatakan tindakan fisik yang bisa diamati.',
+    penanda: ['datang', 'berlari', 'membuka', 'mengambil', 'menyerahkan', 'menulis', 'memeriksa'],
+    contoh: ['Rudi <mark>membuka</mark> tas, <mark>mengeluarkan</mark> buku, dan <mark>menyerahkannya</mark> kepada guru.'],
+    fungsi: 'Menggambarkan tindakan tokoh secara konkret sehingga peristiwa terbayang.',
+    awas: 'Bukan kata kerja material: kata kerja ucapan (berkata, bertanya, menjawab) dan mental (berpikir, merasa, ingin).' },
+  { id: 'dialog', kode: 'f', nama: 'Kalimat langsung dan tidak langsung',
+    pengertian: 'Kalimat langsung mengutip ucapan tokoh apa adanya; kalimat tidak langsung menceritakan kembali isi ucapan.',
+    penanda: ['Langsung: tanda petik dan ucapan dengan kata ganti tokoh (saya, kamu)', 'Tidak langsung: bahwa, agar; tanpa tanda petik'],
+    contoh: ['Langsung: Guru bertanya, <mark>“Kenapa kamu terlambat?”</mark>', 'Tidak langsung: Guru bertanya <mark>kenapa ia</mark> terlambat.'],
+    fungsi: 'Langsung menghadirkan dialog, watak, dan kelucuan atau ironi secara hidup; tidak langsung meringkas ucapan.',
+    awas: 'Saat mengubah: hapus tanda petik, ubah kata ganti (saya → ia), sesuaikan tanda baca (tanda tanya dihilangkan).' },
+  { id: 'majas', kode: 'g', nama: 'Majas sindiran (ironi, sinisme, sarkasme)',
+    pengertian: 'Gaya bahasa yang menyampaikan kritik secara tidak langsung; tingkat kerasnya berbeda.',
+    penanda: ['Ironi: ungkapan yang maknanya berlawanan dengan keadaan', 'Sinisme: sindiran tajam yang meremehkan', 'Sarkasme: sindiran paling kasar, menyerang terang-terangan'],
+    contoh: ['Ironi: <mark>“Cepat sekali pelayanannya, baru seminggu suratku sudah jadi.”</mark>', 'Sinisme: <mark>“Untuk apa ada tempat sampah kalau tidak ada yang mau memakainya?”</mark>', 'Sarkasme: <mark>“Dasar pemalas! Papan tulis saja tidak pernah kalian hapus.”</mark>'],
+    fungsi: 'Menyampaikan kritik secara tersirat; ironi memunculkan humor dari kebalikan makna.',
+    awas: 'Uji: apakah maksudnya berlawanan dengan ucapan (ironi)? Seberapa tajam dan langsung? Menyerang pribadi? Dalam anekdot, ironi dan sinisme ringan lebih lazim daripada sarkasme.' }
+];
+
+/* Kartu kalimat (Sesi 1): jawaban = id kaidah */
+D.kartu = [
+  { id: 'k1', t: 'Hujan turun deras sehingga lapangan upacara berubah menjadi kolam.', a: 'sebab', petunjuk: 'Penanda utama: “sehingga” menyatakan akibat.' },
+  { id: 'k2', t: '“Bapak tidak membawa dompet,” bisik Roni kepada temannya.', a: 'dialog', petunjuk: 'Penanda utama: tanda petik yang mengutip ucapan tokoh.' },
+  { id: 'k3', t: 'Kemarin sore, panitia sudah menempel pengumuman lomba di mading.', a: 'lampau', petunjuk: 'Penanda utama: “kemarin sore” dan “sudah”.' },
+  { id: 'k4', t: '“Hebat benar petugas parkir kita, motor saya dipindahkan sampai ke selokan.”', a: 'majas', petunjuk: 'Pujian yang berlawanan dengan kenyataan: ironi.' },
+  { id: 'k5', t: 'Rapat OSIS dimulai tepat waktu; sementara itu, sebagian anggota masih sibuk di kantin.', a: 'temporal', petunjuk: 'Penanda utama: “sementara itu” menunjukkan hubungan waktu.' },
+  { id: 'k6', t: 'Pak Anto mengangkat kursi, memindahkannya ke pojok, dan menyapu lantai.', a: 'material', petunjuk: 'Penanda utama: tindakan fisik yang bisa dilihat (mengangkat, memindahkan, menyapu).' },
+  { id: 'k7', t: 'Siapa yang betah belajar di kelas sepanas oven ini?', a: 'retoris', petunjuk: 'Jawabannya sudah jelas (tidak ada); penanya tidak menunggu jawaban.' }
+];
+
+D.struktur = [
+  ['Abstraksi (opsional)', 'Gambaran awal tentang isi cerita', 'Kalimat bermakna lampau'],
+  ['Orientasi', 'Latar waktu, tempat, dan tokoh', 'Kalimat bermakna lampau; kata kerja material'],
+  ['Krisis', 'Kejadian lucu, janggal, atau bermasalah', 'Kalimat langsung; konjungsi sebab-akibat; kalimat retoris'],
+  ['Reaksi', 'Tanggapan tokoh terhadap krisis', 'Kalimat langsung; kalimat retoris; kalimat seru/perintah'],
+  ['Koda', 'Penutup: kesimpulan, kejutan, atau komentar', 'Konjungsi temporal (mis. “akhirnya”); sindiran penutup']
+];
+
+D.pembeda = [
+  ['Retoris vs pertanyaan biasa', 'Apakah penanya menunggu jawaban? Jawabannya sudah jelas atau dijawab sendiri oleh penanya?', '“Bukankah kita sudah sepakat?” (retoris) vs “Kapan kita bertemu?” (biasa).'],
+  ['Temporal vs sebab-akibat', 'Sisipkan “karena … maka …”. Jika masuk akal, sebab-akibat; jika hanya urutan, temporal.', '“Ia mandi, lalu berangkat.” (urutan) vs “Ia kehujanan sehingga bajunya basah.” (akibat).'],
+  ['Kata kerja material vs ucapan/mental', 'Dapatkah tindakannya dilihat atau difoto?', 'membuka, berlari (material); bertanya, berkata (ucapan); berpikir, ingin (mental).'],
+  ['Kalimat lampau vs tanpa penanda waktu', 'Cari keterangan waktu atau kata sudah/telah/pernah. Tanpa penanda, makna lampau hanya dari konteks.', '“Kemarin ia datang.” (jelas lampau) vs “Ia datang.” (tidak jelas).'],
+  ['Langsung vs tidak langsung', 'Ada tanda petik dan ucapan asli? Ada “bahwa” dan kata ganti yang berubah?', '“Saya lapar,” kata Dimas. vs Dimas berkata bahwa ia lapar.'],
+  ['Ironi vs sinisme vs sarkasme', 'Maknanya berlawanan dengan ucapan (ironi)? Seberapa tajam dan langsung? Menyerang pribadi?', '“Rajin sekali kamu, pukul dua belas siang baru bangun.” (ironi); “Untuk apa bangun pagi kalau hasilnya sama saja?” (sinisme); “Dasar pemalas!” (sarkasme).'],
+  ['Menyebut nama kaidah vs menganalisis', 'Jawaban lengkap memuat Tandai–Kutip–Jelasin–Hubungkan.', 'Lemah: “Ini kalimat retoris.” Kuat: “‘Bukankah …?’ adalah kalimat retoris yang menyindir … sehingga kritik terasa halus.”']
+];
+
+/* Pohon keputusan "Uji cepat" */
+D.uji = {
+  q1: { q: 'Ada tanda petik yang mengutip ucapan tokoh, atau kata “bahwa” yang menceritakan ulang ucapan?', y: 'r_dialog', n: 'q2' },
+  q2: { q: 'Ada kalimat tanya?', y: 'q2b', n: 'q3' },
+  q2b: { q: 'Apakah penanya benar-benar menunggu jawaban?', y: 'r_biasa', n: 'r_retoris' },
+  q3: { q: 'Ada kata hubung yang menghubungkan dua peristiwa?', y: 'q3b', n: 'q4' },
+  q3b: { q: 'Bisakah disisipi “karena … maka …” dan masuk akal?', y: 'r_sebab', n: 'r_temporal' },
+  q4: { q: 'Ada kata kerja tindakan yang bisa dilihat atau difoto?', y: 'r_material', n: 'q5' },
+  q5: { q: 'Ada keterangan waktu lampau (kemarin, suatu hari) atau kata sudah/telah?', y: 'r_lampau', n: 'q6' },
+  q6: { q: 'Maksudnya berlawanan dengan ucapan, atau bernada meremehkan/menyerang?', y: 'r_majas', n: 'r_none' },
+  r_dialog: { r: 'Kalimat langsung / tidak langsung', d: 'Cek tanda petik dan “bahwa”. Langsung: ucapan apa adanya. Tidak langsung: diceritakan kembali.' },
+  r_biasa: { r: 'Pertanyaan biasa (bukan retoris)', d: 'Penanya menunggu jawaban, jadi bukan kalimat retoris.' },
+  r_retoris: { r: 'Kalimat retoris', d: 'Penanya tidak menunggu jawaban; fungsinya menyindir atau menegaskan.' },
+  r_sebab: { r: 'Konjungsi sebab-akibat', d: 'Ada hubungan alasan dan hasil (karena, sehingga, akibatnya).' },
+  r_temporal: { r: 'Konjungsi temporal', d: 'Hanya urutan waktu (kemudian, lalu, akhirnya).' },
+  r_material: { r: 'Kata kerja material', d: 'Tindakan fisik yang bisa diamati (membuka, berlari, menyerahkan).' },
+  r_lampau: { r: 'Kalimat bermakna lampau', d: 'Peristiwa yang sudah terjadi, ditandai keterangan waktu atau sudah/telah.' },
+  r_majas: { r: 'Majas sindiran', d: 'Tentuin jenisnya: ironi (makna berlawanan), sinisme (meremehkan), sarkasme (kasar dan menyerang).' },
+  r_none: { r: 'Belum teridentifikasi', d: 'Baca ulang kalimat, atau mungkin kaidah yang muncul tidak termasuk tujuh kaidah ini.' }
+};
+
+/* Teks anekdot */
+D.teks = {
+  t1: { judul: 'Pelayanan Kilat', seg: [
+    { t: 'Suatu hari, seorang siswa kelas X datang ke ruang tata usaha untuk mengurus surat keterangan siswa aktif.', k: ['lampau', 'material'] },
+    { t: '“Bu, apakah surat saya bisa selesai hari ini?” tanyanya.', k: ['dialog'] },
+    { t: 'Petugas menjawab, “Tentu bisa, tetapi prosesnya membutuhkan waktu sekitar satu minggu.”', k: ['dialog'] },
+    { t: 'Siswa itu terdiam sejenak, kemudian bertanya, “Kalau begitu, apakah ini yang disebut pelayanan kilat?”', k: ['temporal', 'dialog', 'retoris', 'majas'] },
+    { t: 'Petugas hanya tersenyum.', k: ['material'] },
+    { t: 'Siswa tersebut akhirnya pulang dengan membawa selembar formulir tambahan.', k: ['temporal', 'material'] }
+  ] },
+  t2: { judul: 'Kelas Bersih', seg: [
+    { t: 'Suatu siang, Bu Sari memasuki kelas X-3 dan menemukan bungkus makanan berserakan di bawah meja.', k: ['lampau', 'material'] },
+    { t: '“Siapa yang membuang sampah sembarangan?” tanyanya. Tidak ada yang menjawab.', k: ['dialog'] },
+    { t: '“Bukankah kita sudah sepakat menjaga kebersihan kelas?” lanjut Bu Sari dengan nada kesal.', k: ['dialog', 'retoris'] },
+    { t: 'Ketua kelas berdiri dan menjelaskan bahwa tempat sampah kelas mereka sudah rusak sejak bulan lalu dan belum diganti.', k: ['dialog', 'material', 'lampau'] },
+    { t: '“Kalau begitu, kenapa kalian tidak melapor?” tanya Bu Sari.', k: ['dialog'] },
+    { t: '“Sudah, Bu. Surat permohonannya masih menunggu tanda tangan di tiga bagian sehingga sampai sekarang belum selesai,” jawab ketua kelas.', k: ['dialog', 'sebab'] },
+    { t: 'Bu Sari terdiam sejenak, kemudian mengambil kantong plastik dari tasnya.', k: ['temporal', 'material'] },
+    { t: '“Pakai ini dulu, sambil kita menunggu surat itu menemukan jalannya sendiri,” katanya pelan.', k: ['dialog', 'majas', 'perintah'] }
+  ] },
+  t3: { judul: 'Jam Karet', par: [
+    'Sejak Senin lalu, sekolah menerapkan aturan baru: siswa yang terlambat harus membersihkan taman. Karena aturan itu, Pak Joko, guru piket, sudah berjaga di gerbang sejak pukul 06.45.',
+    'Pukul 07.15, Dimas berlari memasuki gerbang dengan napas tersengal-sengal.',
+    '“Kamu terlambat lagi, Dimas! Sekolah dimulai pukul tujuh,” kata Pak Joko dengan tegas.',
+    '“Maaf, Pak. Tadi saya menunggu angkot hampir satu jam,” jawab Dimas sambil menunduk.',
+    'Pak Joko mengatakan bahwa alasan seperti itu sudah terlalu sering ia dengar. “Sekarang, cepat ke taman dan bersihkan rumputnya!” perintahnya.',
+    'Dimas berjalan beberapa langkah, kemudian berhenti dan menoleh. “Pak, bukankah rapat guru kemarin dijadwalkan pukul tujuh, tetapi baru dimulai pukul delapan?”',
+    'Pak Joko terdiam. Ia melirik jam tangannya, lalu mengambil dua batang sapu dari pos jaga. Akhirnya, ia berjalan ke taman bersama Dimas.'
+  ] }
+};
+
+D.terpandu = [
+  ['Kalimat bermakna lampau', '“Suatu hari, seorang siswa kelas X datang ke ruang tata usaha …”', 'Menetapkan latar waktu dan tempat; cerita berangkat dari kejadian sehari-hari.', 'Situasi yang akrab (mengurus surat) memudahkan pembaca mengenali kritik pada pelayanan.'],
+  ['Konjungsi temporal dan kata kerja material', '“akhirnya pulang dengan membawa selembar formulir tambahan”', '“Akhirnya” menandai penutup; “pulang” dan “membawa” menggambarkan tindakan konkret siswa.', 'Koda menyiratkan kritik: tujuan hari itu tidak tercapai, malah bertambah satu formulir.']
+];
+
+/* Pemantik */
+D.pemantik = [
+  'Pernahkah kalian membaca atau mendengar cerita lucu yang ternyata menyindir kebiasaan di sekolah, di lingkungan, atau dalam pelayanan publik?',
+  'Kenapa kritik terkadang lebih mudah diterima ketika disampaikan melalui humor atau sindiran?',
+  'Apa perbedaan kesan antara “Pelayanan itu lambat” dan “Sepertinya waktu di kantor itu berjalan lebih lambat daripada di tempat lain”?',
+  'Gimana pilihan kata, dialog, dan urutan peristiwa membantu pembaca memahami maksud sebuah anekdot?'
+];
+
+/* Diagnostik */
+D.diag = {
+  d1: 'Apa yang kamu ketahui tentang teks anekdot?',
+  d2: 'Apa perbedaan pertanyaan biasa dan pertanyaan yang digunakan untuk menyindir?',
+  d3: { q: 'Manakah kalimat yang bernada sindiran?', o: [['a', '(a) “Apakah kamu sudah makan?”'], ['b', '(b) “Wah, cepat sekali ya, baru tiga jam menunggu sudah dipanggil.”']], k: 'b' },
+  d4: 'Ceritakan singkat satu contoh kritik yang pernah kamu temui disampaikan lewat humor (komik, video, atau percakapan).',
+  d2kw: ['menunggu jawaban', 'tidak menunggu', 'menyindir', 'sindiran', 'tersirat', 'maksud', 'tidak perlu dijawab', 'sudah tahu', 'bukan pertanyaan sungguhan', 'tidak benar-benar']
+};
+
+/* Latihan formatif */
+D.F = [
+  { id: 'F1', bag: 'A', lv: 'C3', max: 2, q: 'Kemarin, Bu Lina sudah memeriksa tugas kami.',
+    f: [{ n: 'k', t: 'kaidah', l: 'Kaidah' }, { n: 'p', t: 'text', l: 'Penanda' }],
+    parts: [
+      { l: 'Kaidah', auto: true, acc: ['lampau', 'material'], key: 'Kalimat bermakna lampau (penanda “kemarin” dan “sudah”); juga kata kerja material (“memeriksa”).' },
+      { l: 'Penanda', auto: false, f: 'p', kw: ['kemarin', 'sudah', 'memeriksa'], key: 'Penanda: “kemarin” atau “sudah”.' }] },
+  { id: 'F2', bag: 'A', lv: 'C3', max: 2, q: 'Baterai ponselnya habis sehingga ia tidak dapat menelepon ibunya.',
+    f: [{ n: 'k', t: 'kaidah', l: 'Kaidah' }, { n: 'p', t: 'text', l: 'Penanda' }],
+    parts: [
+      { l: 'Kaidah', auto: true, acc: ['sebab'], key: 'Konjungsi sebab-akibat (“sehingga”).' },
+      { l: 'Penanda', auto: false, f: 'p', kw: ['sehingga'], key: 'Penanda: “sehingga”.' }] },
+  { id: 'F3', bag: 'A', lv: 'C3', max: 2, q: 'Siswa itu berkata, “Antreannya panjang sekali.”',
+    f: [{ n: 'k', t: 'kaidah', l: 'Kaidah' }, { n: 'p', t: 'text', l: 'Penanda' }],
+    parts: [
+      { l: 'Kaidah', auto: true, acc: ['dialog'], key: 'Kalimat langsung. Catatan: “berkata” bukan kata kerja material (kata kerja ucapan).' },
+      { l: 'Penanda', auto: false, f: 'p', kw: ['petik', '“', '"', 'ucapan', 'langsung'], key: 'Penanda: tanda petik dan ucapan tokoh.' }] },
+  { id: 'F4', bag: 'B', lv: 'C4', max: 2, q: 'Manakah kalimat retoris?',
+    f: [{ n: 'k', t: 'radio', o: [['a', '(a) “Apakah kamu sudah mengumpulkan tugas?” (guru menunggu jawaban)'], ['b', '(b) “Bukankah kita semua tahu bahwa membuang sampah sembarangan itu salah?”']] }, { n: 'p', t: 'text', l: 'Alasan' }],
+    parts: [
+      { l: 'Pilihan', auto: true, ans: 'b', key: 'Jawaban: (b).' },
+      { l: 'Alasan', auto: false, f: 'p', kw: ['menunggu', 'jawab', 'jelas', 'tahu', 'tersirat', 'menyindir', 'menegaskan', 'sudah'], key: 'Jawabannya sudah jelas sehingga pertanyaan menegaskan atau menyindir; (a) pertanyaan biasa karena penanya menunggu jawaban.' }] },
+  { id: 'F5', bag: 'B', lv: 'C4', max: 2, q: 'Manakah yang menyatakan hubungan sebab-akibat, bukan sekadar urutan? Jelasin dengan uji “karena … maka …”.',
+    f: [{ n: 'k', t: 'radio', o: [['a', '(a) Dimas membuka pintu kelas, lalu duduk di bangkunya.'], ['b', '(b) Dimas terlambat sehingga ia masuk lewat pintu belakang.']] }, { n: 'p', t: 'text', l: 'Alasan' }],
+    parts: [
+      { l: 'Pilihan', auto: true, ans: 'b', key: 'Jawaban: (b).' },
+      { l: 'Alasan', auto: false, f: 'p', kw: ['karena', 'maka', 'akibat', 'sebab', 'hasil', 'urutan'], key: 'Uji: “Dimas terlambat, maka ia masuk lewat pintu belakang” masuk akal; (a) hanya urutan (temporal).' }] },
+  { id: 'F6', bag: 'B', lv: 'C4', max: 2, q: 'Manakah yang BUKAN kata kerja material?',
+    f: [{ n: 'k', t: 'radio', o: [['membuka', 'membuka'], ['bertanya', 'bertanya'], ['mengambil', 'mengambil'], ['berlari', 'berlari']] }, { n: 'p', t: 'text', l: 'Alasan' }],
+    parts: [
+      { l: 'Pilihan', auto: true, ans: 'bertanya', key: 'Jawaban: “bertanya”.' },
+      { l: 'Alasan', auto: false, f: 'p', kw: ['ucapan', 'dilihat', 'difoto', 'fisik', 'verbal', 'bicara', 'berbicara', 'tidak tampak'], key: '“Bertanya” adalah kata kerja ucapan; tindakannya tidak bisa dilihat atau difoto sebagai gerakan fisik.' }] },
+  { id: 'F7', bag: 'B', lv: 'C4', max: 2, q: 'Ubahlah menjadi kalimat tidak langsung dan sebutkan dua hal yang berubah: Bu Rina berkata, “Kalian harus mengumpulkan tugas besok.”',
+    f: [{ n: 'p', t: 'text', l: 'Kalimat tidak langsung' }, { n: 'q', t: 'text', l: 'Dua hal yang berubah' }],
+    parts: [
+      { l: 'Kalimat', auto: true, fn: 'f7a', key: 'Contoh: Bu Rina berkata bahwa mereka (para siswa) harus mengumpulkan tugas besok.' },
+      { l: 'Perubahan', auto: false, fn: 'f7b', key: 'Berubah: tanda petik hilang dan ditambah “bahwa”; kata ganti “kalian” menjadi “mereka”.' }] },
+  { id: 'F8', bag: 'B', lv: 'C4', max: 2, q: 'Tentuin jenis majas sindiran: (a) “Rapi sekali tulisanmu, sampai dokter pun menyerah membacanya.” (b) “Buat apa disiplin kalau yang telat tetap dapat nilai bagus?” (c) “Dasar tukang bolos, otakmu memang kosong!”',
+    f: [{ n: 'a', t: 'majas', l: 'a' }, { n: 'b', t: 'majas', l: 'b' }, { n: 'c', t: 'majas', l: 'c' }],
+    parts: [{ l: 'a', auto: true, ansf: 'a', ans: 'ironi', key: '(a) ironi: pujian berlawanan dengan kenyataan (tulisan sulit dibaca).' }, { l: 'b', auto: true, ansf: 'b', ans: 'sinisme', key: '(b) sinisme: sindiran meremehkan.' }, { l: 'c', auto: true, ansf: 'c', ans: 'sarkasme', key: '(c) sarkasme: kasar dan menyerang pribadi (“tukang bolos”, “otakmu kosong”).' }],
+    special: 'f8' }
+];
+
+D.paragrafF9 = 'Kemarin, Pak Doni memasuki kelas dan menemukan papan tulis belum dihapus. “Siapa yang piket hari ini?” tanyanya. Ketua kelas menjawab bahwa petugas piket sedang ke kantin. Pak Doni mengangguk, kemudian bertanya, “Jadi, piket hari ini bertugas di kelas atau di kantin?”';
+
+/* Soal uraian (daftar periksa komponen) */
+D.E = {
+  F9: { tp: 1, lv: 'C4', bag: 'C', q: 'Pilih tiga kaidah berbeda dalam paragraf. Tulis kutipan dan jelaskan fungsi masing-masing (Kaidah | Kutipan | Fungsi).', rows: 6, ctx: 'paragrafF9', suggest: 'kaidah3',
+    comps: ['K1: Kaidah pertama benar dan disertai kutipan.', 'K2: Kaidah kedua (berbeda) benar dan disertai kutipan.', 'K3: Kaidah ketiga (berbeda) benar dan disertai kutipan.', 'K4: Fungsi dijelaskan tepat untuk minimal dua kaidah.'],
+    contoh: 'Contoh: lampau “Kemarin” (latar waktu); material “memasuki/menemukan” (tindakan); langsung “Siapa yang piket …” (dialog); tidak langsung “menjawab bahwa …”; temporal “kemudian” (urutan); retoris/sindiran pertanyaan akhir.' },
+  F10: { tp: 1, lv: 'C4', bag: 'C', q: 'Kenapa pertanyaan terakhir Pak Doni bisa ditafsirkan sebagai sindiran, dan gimana pertanyaan itu menimbulkan humor? Hubungkan dengan harapan dan kenyataan.', rows: 5, ctx: 'paragrafF9',
+    comps: ['K1: Pertanyaan tidak benar-benar mencari informasi (retoris/sindiran).', 'K2: Maksud tersirat: petugas piket lalai atau lebih memilih kantin.', 'K3: Pertentangan harapan (bertugas di kelas) dan kenyataan (di kantin).', 'K4: Kaitan dengan humor atau kritik halus.'],
+    kw: [['retoris', 'menyindir', 'sindiran', 'tidak menunggu', 'sudah tahu', 'bukan pertanyaan', 'tidak benar-benar', 'tidak mencari'], ['lalai', 'tidak menjalankan', 'kantin', 'tidak bertugas', 'tidak piket', 'malas'], ['seharusnya', 'harapan', 'kenyataan', 'bertentangan', 'pertentangan', 'ketidaksesuaian'], ['humor', 'lucu', 'ironi', 'halus', 'tidak langsung', 'kritik']] },
+  'L2-5': { tp: 3, lv: 'C5', bag: 'LK-2', q: 'Menurutmu, apakah sindiran pada kalimat penutup Teks 2 disampaikan secara santun? Nilailah dengan alasan berdasarkan pilihan bahasa.', rows: 5, ctx: 't2',
+    comps: ['K1: Penilaian jelas (santun / kurang santun / santun dengan catatan).', 'K2: Alasan berbasis bahasa (nada pelan, ungkapan kiasan “menemukan jalannya sendiri”, tanpa menyebut nama).', 'K3: Sasaran kritik adalah sistem, bukan pribadi.', 'K4: Dampak pada pendengar (tidak merasa diserang, sadar persoalan).'],
+    kw: [['santun', 'sopan', 'halus', 'kurang santun', 'tidak santun'], ['pelan', 'kiasan', 'ironi', 'tanpa menyebut', 'menemukan jalannya', 'nada', 'pilihan kata', 'bahasa'], ['sistem', 'birokrasi', 'surat', 'bukan pribadi', 'tidak menyerang', 'kebijakan', 'prosedur'], ['tersinggung', 'sadar', 'terdiam', 'diserang', 'menerima', 'tidak marah', 'dampak']] },
+  S1: { tp: 2, lv: 'C4', bag: 'Latihan 3', q: 'Pilih empat kaidah kebahasaan berbeda yang terdapat dalam teks. Tulis kutipan dan jelaskan fungsi masing-masing dalam bentuk tabel (Kaidah | Kutipan | Fungsi).', rows: 7, suggest: 'kaidah4',
+    comps: ['K1: Kaidah pertama tepat + kutipan + fungsi.', 'K2: Kaidah kedua (berbeda) tepat + kutipan + fungsi.', 'K3: Kaidah ketiga (berbeda) tepat + kutipan + fungsi.', 'K4: Kaidah keempat (berbeda) tepat + kutipan + fungsi.'],
+    contoh: 'Contoh: lampau “Sejak Senin lalu, sekolah menerapkan aturan baru” (latar waktu); sebab-akibat “Karena aturan itu, Pak Joko … sudah berjaga” (alasan tindakan); material “berlari memasuki gerbang” (tindakan tergesa); langsung “Maaf, Pak. Tadi saya menunggu angkot …” (alasan dan watak Dimas); retoris/ironi “bukankah rapat guru kemarin …?” (sindiran); temporal “kemudian berhenti dan menoleh”.' },
+  S2: { tp: 2, lv: 'C4', bag: 'Latihan 3', q: 'Ucapan Dimas disajikan sebagai kalimat langsung, sedangkan keluhan Pak Joko tentang alasan yang sering didengarnya disajikan sebagai kalimat tidak langsung. Menurutmu, kenapa penulis memilih cara berbeda tersebut?', rows: 5,
+    comps: ['K1: Ucapan Dimas langsung karena bagian penting/puncak cerita.', 'K2: Efek langsung: watak sopan Dimas dan kejutan sindiran terasa.', 'K3: Keluhan Pak Joko tidak langsung karena pengulangan yang cukup diringkas.', 'K4: Menghubungkan pilihan itu dengan alur dan fokus pembaca.'],
+    kw: [['penting', 'puncak', 'utuh', 'inti', 'kunci', 'sindiran'], ['kejutan', 'watak', 'sopan', 'hidup', 'efek', 'humor', 'terasa'], ['diulang', 'ringkas', 'sering', 'berulang', 'tidak perlu', 'singkat', 'detail'], ['alur', 'fokus', 'pembaca', 'tidak menghentikan', 'mengalir', 'perhatian']] },
+  S3: { tp: 2, lv: 'C4', bag: 'Latihan 3', q: 'Analisislah fungsi konjungsi temporal “kemudian”, “lalu”, dan “akhirnya” dalam membangun alur dan penutup cerita.', rows: 5,
+    comps: ['K1: “kemudian” menghubungkan langkah Dimas (berjalan → berhenti → menoleh) dan menyiapkan klimaks.', 'K2: “lalu” menandai urutan reaksi Pak Joko (melirik jam → mengambil sapu).', 'K3: “akhirnya” menandai koda atau penutup.', 'K4: Menghubungkan urutan itu dengan efek (hasil mengejutkan, ironi, alur mudah diikuti).'],
+    kw: [['berhenti', 'menoleh', 'klimaks', 'berjalan', 'langkah'], ['melirik', 'sapu', 'reaksi', 'jam tangan'], ['akhirnya', 'koda', 'penutup', 'akhir cerita'], ['kejutan', 'mengejutkan', 'ironi', 'alur', 'mudah diikuti', 'urutan', 'kronolog']] },
+  S4: { tp: 2, lv: 'C4', bag: 'Latihan 3', q: 'Kenapa pertanyaan “Pak, bukankah rapat guru kemarin dijadwalkan pukul tujuh, tetapi baru dimulai pukul delapan?” bisa ditafsirkan sebagai sindiran, dan gimana pertanyaan itu menimbulkan efek humor? Hubungkan dengan harapan dan kenyataan dalam cerita.', rows: 6,
+    comps: ['K1: Pertanyaan bukan mencari informasi (Dimas sudah tahu jawabannya); retoris/ironi.', 'K2: Maksud tersirat: guru juga tidak tepat waktu.', 'K3: Pertentangan harapan (guru menuntut disiplin) dan kenyataan (rapat molor).', 'K4: Kaitan dengan humor (Pak Joko terdiam, ikut membersihkan taman) atau kritik halus.'],
+    kw: [['retoris', 'tidak mencari', 'sudah tahu', 'bukan pertanyaan', 'menyindir', 'ironi', 'tidak benar-benar'], ['tidak tepat waktu', 'terlambat', 'tidak disiplin', 'molor', 'guru juga'], ['harapan', 'kenyataan', 'bertentangan', 'menuntut disiplin', 'seharusnya', 'pertentangan'], ['humor', 'lucu', 'terdiam', 'sapu', 'halus', 'ironi', 'kritik']] },
+  S5: { tp: 2, lv: 'C4', bag: 'Latihan 3', q: 'Kritik sosial apa yang disampaikan teks ini? Jelasin bukti kebahasaan dan bukti peristiwa yang mendukung penafsiranmu.', rows: 6,
+    comps: ['K1: Kritik: penegak aturan menuntut disiplin siswa tetapi tidak konsisten pada diri sendiri (“jam karet”).', 'K2: Bukti kebahasaan (mis. “bukankah … tetapi …”, dialog langsung).', 'K3: Bukti peristiwa (Pak Joko terdiam, mengambil dua sapu).', 'K4: Menjelaskan kaitan bukti dengan kritik.'],
+    kw: [['tidak konsisten', 'inkonsisten', 'konsisten', 'jam karet', 'disiplin', 'dirinya sendiri', 'menuntut'], ['bukankah', 'tetapi', 'dialog', 'kutipan', '“'], ['terdiam', 'sapu', 'mengambil', 'melirik'], ['karena', 'sehingga', 'menunjukkan', 'membuktikan', 'berarti', 'kritik']] },
+  S6: { tp: 3, lv: 'C5', bag: 'Latihan 3', q: 'Nilailah apakah cara Dimas menyampaikan kritik sudah santun dan efektif, dengan alasan berdasarkan pilihan bahasanya. Bandingkan dengan satu ungkapan alternatif yang lebih tajam (mis. “Bapak juga sering terlambat!”) dan jelaskan perbedaan dampaknya.', rows: 7,
+    comps: ['K1: Penilaian jelas (santun dan efektif / kurang / dengan catatan).', 'K2: Alasan berbasis pilihan bahasa (“Maaf, Pak”, bentuk tanya, “bukankah”, nada hormat).', 'K3: Membandingkan alternatif tajam yang menyerang pribadi (cenderung sarkasme).', 'K4: Menyimpulkan dampak: kritik santun lebih mudah diterima dan membuat guru sadar.'],
+    kw: [['santun', 'sopan', 'efektif', 'kurang santun', 'tidak santun'], ['maaf', 'bukankah', 'sapaan', 'hormat', 'bertanya', 'pertanyaan', 'nada'], ['menyerang', 'pribadi', 'sarkasme', 'tersinggung', 'kasar', 'alternatif', 'sering terlambat'], ['diterima', 'sadar', 'defensif', 'dampak', 'efektif', 'tersinggung']] }
+};
+
+/* LK-1 dan LK-2 */
+D.LK1 = [
+  { q: 'Temukan semua kalimat langsung. Siapa yang berbicara dan apa kesan yang muncul dari dialog tersebut?', k: 'Pertanyaan siswa, jawaban petugas, dan pertanyaan lanjutan siswa. Dialog menampilkan kontras harapan siswa (cepat) dan jawaban petugas (satu minggu).' },
+  { q: 'Temukan konjungsi temporal dan jelaskan urutan peristiwa yang ditandainya. Apakah “tetapi” termasuk konjungsi temporal? Kenapa?', k: '“kemudian bertanya” (urutan terdiam → bertanya) dan “akhirnya pulang” (tahap penutup). “Tetapi” menyatakan pertentangan, bukan urutan waktu.' },
+  { q: 'Kalimat mana yang bernada sindiran? Kenapa disebut sindiran dan bukan pertanyaan biasa, dan jenis majas apa yang dipakai (ironi, sinisme, atau sarkasme)?', k: '“Kalau begitu, apakah ini yang disebut pelayanan kilat?” Siswa tidak meminta definisi; ia menyindir istilah “kilat” yang justru memakan seminggu. Majas: ironi (istilah “kilat” berlawanan dengan kenyataan).' },
+  { q: 'Jelasin pertentangan antara harapan siswa dan kenyataan pelayanan.', k: 'Harapan: selesai hari itu. Kenyataan: sekitar satu minggu dan ditambah formulir. Pertentangan menimbulkan ironi.' },
+  { q: 'Kaidah mana yang tidak muncul secara jelas dalam teks ini? Apa artinya bagi pernyataan “tidak semua kaidah selalu muncul”?', k: 'Konjungsi sebab-akibat tidak muncul. Teks tetap utuh, sehingga terbukti tidak semua kaidah harus ada.' },
+  { q: 'Gimana pilihan bahasa membangun humor sekaligus menyampaikan kritik?', k: 'Istilah “pelayanan kilat” dipakai ironis; dialog langsung menonjolkan kontras; “formulir tambahan” di koda menunjukkan prosedur berbelit. Kritik: layanan administrasi lambat dan berbelit.' }
+];
+D.LK2 = [
+  { q: 'Lengkapi tabel Kaidah | Kutipan | Fungsi untuk sedikitnya empat kaidah berbeda.', k: 'Contoh: lampau “Suatu siang”; kata kerja material “memasuki”, “menemukan”, “mengambil”; retoris “Bukankah kita sudah sepakat …?”; konjungsi temporal “kemudian”; konjungsi sebab-akibat “sehingga”; kalimat langsung (dialog) dan tidak langsung (“Ketua kelas … menjelaskan bahwa …”); majas ironi “menunggu surat itu menemukan jalannya sendiri”.' },
+  { q: 'Tentuin satu kalimat retoris. Kenapa disebut retoris dan apa maksud tersiratnya?', k: '“Bukankah kita sudah sepakat menjaga kebersihan kelas?” Tidak menanyakan sesuatu yang belum diketahui, tetapi menegur secara halus; jawabannya sudah jelas (“sudah sepakat”).' },
+  { q: 'Apa harapan Bu Sari dan apa kenyataan yang terungkap?', k: 'Harapan: ada yang mengaku dan kelas bersih karena kesadaran siswa. Kenyataan: sumber masalah adalah tempat sampah rusak dan laporan yang belum ditindaklanjuti.' },
+  { q: 'Kritik sosial apa yang disampaikan, dan ditujukan pada perilaku siswa atau pada sistem? Sertakan bukti kebahasaan dan peristiwa.', k: 'Kritik ditujukan pada sistem, yaitu birokrasi yang lambat dan berbelit. Bukti: “tanda tangan di tiga bagian”, “menunggu surat itu menemukan jalannya sendiri”; Bu Sari terdiam (menyadari persoalan).' }
+];
+
+/* Matriks butir (untuk ekspor dan Sheets) */
+D.butir = [
+  ['F1', 'Formatif', 1, 'C3', 'Isian', 2, 'O+K'], ['F2', 'Formatif', 1, 'C3', 'Isian', 2, 'O+K'], ['F3', 'Formatif', 1, 'C3', 'Isian', 2, 'O+K'],
+  ['F4', 'Formatif', 1, 'C4', 'Pilihan + alasan', 2, 'O+K'], ['F5', 'Formatif', 1, 'C4', 'Pilihan + alasan', 2, 'O+K'], ['F6', 'Formatif', 1, 'C4', 'Pilihan + alasan', 2, 'O+K'],
+  ['F7', 'Formatif', 1, 'C4', 'Isian', 2, 'O+K'], ['F8', 'Formatif', 1, 'C4', 'Isian 3 bagian', 2, 'O'],
+  ['F9', 'Formatif', 1, 'C4', 'Uraian', 4, 'M'], ['F10', 'Formatif', 1, 'C4', 'Uraian', 4, 'M'],
+  ['L2-5', 'Formatif (LK-2)', 3, 'C5', 'Uraian', 4, 'M'],
+  ['S1', 'Latihan 3', 2, 'C4', 'Uraian', 4, 'M'], ['S2', 'Latihan 3', 2, 'C4', 'Uraian', 4, 'M'], ['S3', 'Latihan 3', 2, 'C4', 'Uraian', 4, 'M'],
+  ['S4', 'Latihan 3', 2, 'C4', 'Uraian', 4, 'M'], ['S5', 'Latihan 3', 2, 'C4', 'Uraian', 4, 'M'], ['S6', 'Latihan 3', 3, 'C5', 'Uraian', 4, 'M']
+];
+
+D.tp = [
+  { n: 1, lv: 'C4', sesi: 'Sesi 1', t: 'Menganalisis tujuh bentuk kaidah kebahasaan teks anekdot pada kalimat dan paragraf, menunjukkan penanda dan fungsinya, serta membedakan kaidah yang mirip.', ind: ['1.1 Menjelaskan pengertian dan fungsi tiap kaidah (C2)', '1.2 Mengidentifikasi penanda pada kalimat (C3)', '1.3 Membedakan kaidah yang mirip dengan uji tertentu (C4)', '1.4 Menganalisis fungsi penanda dalam paragraf (C4)'], butir: 'F1–F10', max: 24 },
+  { n: 2, lv: 'C4', sesi: 'Sesi 2', t: 'Menganalisis hubungan penggunaan kaidah kebahasaan dengan alur, humor, dan sindiran, disertai kutipan sebagai bukti, pada teks yang belum pernah dibaca.', ind: ['2.1 Mengatribusikan fungsi kaidah pada kutipan (C4)', '2.2 Menghubungkan kaidah dengan efek humor dan sindiran (C4)', '2.3 Menyimpulkan kritik sosial dengan bukti kebahasaan dan peristiwa (C4)'], butir: 'S1–S5', max: 20 },
+  { n: 3, lv: 'C5', sesi: 'Sesi 2', t: 'Mengevaluasi kesantunan penyampaian kritik (ironi, sinisme, sarkasme) berdasarkan pilihan bahasa, dengan alasan yang dapat dipertanggungjawabkan.', ind: ['3.1 Menilai kesantunan kritik dengan kriteria kebahasaan (C5)', '3.2 Membandingkan ungkapan alternatif dan dampaknya (C5)'], butir: 'L2-5 dan S6', max: 8 }
+];
+
+D.kategori = [
+  { min: 90, n: 'Jago', c: 'mahir', m: 'Keren banget! Siap buat tantangan tambahan.' },
+  { min: 75, n: 'Udah bisa', c: 'cakap', m: 'Target tercapai. Mantap!' },
+  { min: 50, n: 'Hampir bisa', c: 'mulai', m: 'Dikit lagi. Ulangi bagian yang masih keliru.' },
+  { min: 0, n: 'Perlu latihan lagi', c: 'belum', m: 'Pelan-pelan aja, ulangi sesinya dan tanya guru kalau bingung.' }
+];
+
+D.tindak = {
+  1: { mahir: 'Keren! Lanjut ke Bedah Teks. Kalau mau tantangan, coba cari kalimat perintah/seru di Teks 2.', cakap: 'Mantap, lanjut ke Bedah Teks.', mulai: 'Baca lagi tab "Tujuh kaidah" dan coba Uji cepat, lalu kerjain ulang soal latihan yang masih keliru.', belum: 'Ulangi pelan-pelan: kartu kalimat, materi, lalu Uji cepat. Boleh tanya guru kalau ada yang bingung.' },
+  2: { mahir: 'Keren! Coba cari anekdot lain, terus bandingin cara tiap teks bikin lucu dan nyindir.', cakap: 'Mantap, kamu udah bisa membedah teks anekdot.', mulai: 'Ulangi Bedah Teks 1 dan 2 pakai kerangka kalimat. Besoknya, tulis ulang jawaban soal 1 dan 3 Tantangan pakai kata-katamu sendiri.', belum: 'Baca Contoh bedah teks dua kali, lalu coba lagi Bedah Teks 1 dan 2. Tanya guru kalau masih bingung.' },
+  3: { mahir: 'Keren! Coba nilai kesantunan kritik di anekdot lain.', cakap: 'Mantap, lanjut ya.', mulai: 'Baca lagi kaidah (g) dan bagian "Humor dan kritik", lalu tulis ulang jawaban soal 6 Tantangan.', belum: 'Bandingin ironi, sinisme, dan sarkasme di tiga contoh, lalu coba soal 6 Tantangan lagi. Boleh tanya guru.' }
+};
+
+D.jalur = {
+  siap: { n: 'Siap ngebut', d: 'Bekalmu udah bagus. Ikuti alurnya aja.' },
+  penguatan: { n: 'Perlu dikuatin dikit', d: 'Baca Materi pelan-pelan dan coba Uji cepat sebelum latihan.' },
+  bimbingan: { n: 'Pelan-pelan dulu', d: 'Pakai kerangka kalimat di Materi, dan baca Contoh bedah teks dua kali sebelum Bedah Teks 1.' }
+};
+
+D.refl = [
+  'Kaidah kebahasaan apa yang paling mudah kamu identifikasi? Kenapa?',
+  'Bagian mana dari analisis teks yang paling menantang?',
+  'Gimana unsur kebahasaan membantu kamu memahami humor dan kritik dalam anekdot?',
+  'Apa satu hal yang akan kamu perhatikan ketika membaca anekdot berikutnya?'
+];
+D.reflSkala = [
+  'Aku bisa menjelaskan pengertian dan fungsi tujuh kaidah',
+  'Aku bisa membedakan kaidah yang mirip dan menjelaskan fungsinya di paragraf',
+  'Aku bisa menghubungkan kaidah, humor, dan sindiran di teks utuh',
+  'Aku bisa menilai santun atau tidaknya kritik di anekdot'
+];
+
+D.glosarium = [
+  ['Anekdot', 'Cerita singkat yang menghadirkan humor dan sering memuat sindiran atau kritik.'],
+  ['Kaidah kebahasaan', 'Ciri atau pola penggunaan bahasa dalam suatu jenis teks.'],
+  ['Konjungsi', 'Kata yang menghubungkan kata, frasa, klausa, atau kalimat.'],
+  ['Konjungsi temporal', 'Kata hubung yang menunjukkan hubungan waktu atau urutan peristiwa.'],
+  ['Konjungsi sebab-akibat', 'Kata hubung yang menyatakan hubungan sebab dan hasil.'],
+  ['Kalimat retoris', 'Kalimat tanya yang tidak terutama dimaksudkan untuk memperoleh jawaban.'],
+  ['Kata kerja material', 'Kata kerja yang menyatakan tindakan fisik yang bisa diamati.'],
+  ['Kalimat langsung', 'Kalimat yang mengutip ucapan tokoh apa adanya, ditandai tanda petik.'],
+  ['Kalimat tidak langsung', 'Kalimat yang menceritakan kembali isi ucapan tanpa mengutipnya.'],
+  ['Ironi', 'Pertentangan antara harapan dan kenyataan, atau antara maksud dan ungkapan.'],
+  ['Sindiran', 'Kritik yang disampaikan tidak langsung, melalui perumpamaan, pertanyaan, atau ungkapan lain.'],
+  ['Majas sindiran', 'Gaya bahasa untuk menyampaikan kritik secara tidak langsung: ironi, sinisme, dan sarkasme.'],
+  ['Sinisme', 'Sindiran tajam yang meremehkan, disampaikan secara langsung.'],
+  ['Sarkasme', 'Sindiran paling kasar yang menyerang secara terang-terangan.'],
+  ['Kritik sosial', 'Penilaian terhadap perilaku, kebiasaan, atau sistem di masyarakat yang dianggap perlu diperbaiki.']
+];
+
+D.standar = [
+  ['Kurikulum', 'Kurikulum Merdeka, Fase E (kelas X). Tiga tujuan pembelajaran, seluruhnya C4 atau lebih (C4, C4, C5).'],
+  ['Isi materi', 'Fokus pada kaidah kebahasaan anekdot (tujuh kaidah), dilengkapi pasangan kaidah yang sering tertukar. Selaras dengan Bahan Ajar Revisi dan buku teks Kemendikbudristek (2023).'],
+  ['Penyajian', 'Alur bertahap (diagnostik, materi, latihan C3 ke C4, analisis teks utuh, uji pemahaman), umpan balik segera, jalur belajar sesuai hasil diagnostik.'],
+  ['Penilaian', 'Diagnostik (aplikasi), formatif (aplikasi), sumatif 40 butir (Google Form: 30 PG dan 5 menjodohkan otomatis, 5 uraian berrubrik); ketercapaian per TP dengan empat kategori.'],
+  ['Kebahasaan', 'Bahasa Indonesia baku, tingkat sesuai peserta didik kelas X.'],
+  ['Kegrafikan dan aksesibilitas', 'Dirancang mengacu pada WCAG 2.1 AA: kontras teks, navigasi keyboard, label formulir, ukuran sentuh minimal 44 px, mode gelap, dan pengurangan gerak. Belum diaudit pihak independen.'],
+  ['Luring dan jarak jauh', 'Satu berkas HTML tanpa pustaka luar; data tersimpan di perangkat. Bila di-host (mis. GitHub Pages), service worker menyimpan salinan agar dapat dibuka tanpa internet.'],
+  ['Integrasi data', 'Hasil dapat dikirim ke Google Sheets lewat Apps Script (berkas Code.gs) saat tersambung; antrean otomatis bila luring.'],
+  ['Privasi', 'Hanya kode peserta (nama opsional). Tidak ada pelacak. Data dikirim hanya jika URL Apps Script diatur.'],
+  ['Keterbatasan', 'Belum divalidasi ahli materi dan ahli media, belum diuji coba pada peserta didik. Penilaian uraian berupa penilaian diri dengan saran kata kunci, sehingga perlu ditinjau guru bila dipakai untuk nilai resmi.']
+];
+
+D.sumber = [
+  'Kemendikbudristek. Capaian Pembelajaran Mata Pelajaran Bahasa Indonesia, Fase A–F. kurikulum.kemdikbud.go.id (cek versi dan nomor Kepka BSKAP yang berlaku).',
+  'Aulia, F. T., Gumilar, S. I., & Kurniawan, A. (2023). Bahasa Indonesia untuk SMA/MA/SMK/MAK Kelas X (Edisi Revisi). Jakarta: Kemendikbudristek, Pusat Perbukuan. Bab II.',
+  'Alwi, H., dkk. (2003). Tata Bahasa Baku Bahasa Indonesia (edisi ketiga). Jakarta: Balai Pustaka.',
+  'Badan Pengembangan dan Pembinaan Bahasa. Kamus Besar Bahasa Indonesia (KBBI) Daring. kbbi.kemdikbud.go.id.',
+  'Anderson, L. W., & Krathwohl, D. R. (Eds.). (2001). A Taxonomy for Learning, Teaching, and Assessing. New York: Longman.',
+  'Zimmerman, B. J. (2002). Becoming a self-regulated learner: An overview. Theory Into Practice, 41(2), 64–70.',
+  'Raskin, V. (1985). Semantic Mechanisms of Humor. Dordrecht: Reidel; Attardo, S. (1994). Linguistic Theories of Humor. Berlin: Mouton de Gruyter.',
+  'Teks 1 diadaptasi dari bahan ajar awal (konteks diubah ke sekolah); Teks 2, Teks 3, dan paragraf F9–F10 adalah karya penyusun.'
+];
+
+</script>
+<script>
+/* APP: router, penilaian, ketercapaian, sinkron Google Sheets */
+(function () {
+  'use strict';
+  var IN_ARTIFACT = false;
+  /* Tautan Google Form Uji Pemahaman. Guru boleh mengisinya di sini (di antara tanda petik), atau lewat menu Pengaturan. */
+  var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf8vJUT032croNKWEvkKwvc3tf7iKUFlr-nvNgI18KVMBILYQ/viewform';
+  var KEY = 'kaidah-anekdot-v1';
+
+  /* ---------- penyimpanan ---------- */
+  function blank() { return { v: 1, p: { kode: '', nama: '' }, a: {}, sc: {}, vis: {}, mt: {}, kartu: {}, ann: { t1: [], t2: [] }, diag: null, set: { url: '', form: '', token: 'anekdot-unsoed' }, sync: { dirty: false, last: '' }, theme: '', lk: {}, refl: {} }; }
+  var S = (function () {
+    try { var r = localStorage.getItem(KEY); if (r) { var o = JSON.parse(r); var b = blank(); for (var k in b) { if (o[k] === undefined) o[k] = b[k]; } return o; } } catch (e) { }
+    return blank();
+  })();
+  var saveT = null;
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { } }
+  function saveSoon() { clearTimeout(saveT); saveT = setTimeout(save, 250); }
+  function dirty() { saveSoon(); }
+
+  /* ---------- util DOM ---------- */
+  function h(tag, props) {
+    var e = document.createElement(tag);
+    if (props) {
+      for (var k in props) {
+        var v = props[k];
+        if (v == null || v === false) continue;
+        if (k === 'class') e.className = v;
+        else if (k === 'html') e.innerHTML = v;
+        else if (k === 'value' || k === 'checked' || k === 'disabled' || k === 'readOnly' || k === 'selected') e[k] = v;
+        else if (k.slice(0, 2) === 'on') e.addEventListener(k.slice(2), v);
+        else e.setAttribute(k, v === true ? '' : v);
+      }
+    }
+    for (var i = 2; i < arguments.length; i++) add(e, arguments[i]);
+    return e;
+  }
+  function add(e, c) {
+    if (c == null || c === false) return;
+    if (Array.isArray(c)) { c.forEach(function (x) { add(e, x); }); return; }
+    e.appendChild(c.nodeType ? c : document.createTextNode(String(c)));
+  }
+  var ICON = {
+    home: 'M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z',
+    info: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 5a1.2 1.2 0 1 1 0 2.4A1.2 1.2 0 0 1 12 7zm-1.2 4h2.4v6h-2.4z',
+    target: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4a6 6 0 1 1 0 12 6 6 0 0 1 0-12zm0 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6z',
+    check: 'M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z',
+    help: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 16h-2v-2h2zm1.9-7.4c-.7.9-1.4 1.2-1.7 1.9-.1.3-.2.5-.2 1.1h-2c0-.9.1-1.5.5-2 .5-.8 1.3-1.1 1.7-1.7.3-.4.2-1.2-.4-1.5-.6-.3-1.4 0-1.6.6l-1.8-.7c.4-1.4 1.8-2.3 3.2-2.2 2.2.1 3.5 2.2 2.3 3.9z',
+    cards: 'M4 5h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm14 2h2v12H8v-1h10z',
+    book: 'M5 3h12a2 2 0 0 1 2 2v14H7a2 2 0 0 0-2 2zM5 19V5H4v14a2 2 0 0 1 1 1.7z',
+    edit: 'M3 17.3V21h3.7L17.8 9.9l-3.7-3.7zM20.7 7a1 1 0 0 0 0-1.4l-2.3-2.3a1 1 0 0 0-1.4 0l-1.8 1.8 3.7 3.7z',
+    flask: 'M9 3h6v2h-1v5l5 9a2 2 0 0 1-1.7 3H6.7A2 2 0 0 1 5 19l5-9V5H9z',
+    flag: 'M5 3v18h2v-7h6l1 2h6V5h-6l-1-2z',
+    chart: 'M4 20V10h3v10zm6 0V4h3v16zm6 0v-7h3v7z',
+    gear: 'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm9 5v-2l-2.1-.4a7 7 0 0 0-.7-1.6l1.2-1.8-1.4-1.4-1.8 1.2a7 7 0 0 0-1.6-.7L14 3h-2l-.4 2.1a7 7 0 0 0-1.6.7L8.2 4.6 6.8 6l1.2 1.8a7 7 0 0 0-.7 1.6L5.2 10v2l2.1.4c.2.6.4 1.1.7 1.6l-1.2 1.8 1.4 1.4 1.8-1.2c.5.3 1 .5 1.6.7L12 21h2l.4-2.1c.6-.2 1.1-.4 1.6-.7l1.8 1.2 1.4-1.4-1.2-1.8c.3-.5.5-1 .7-1.6z',
+    list: 'M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z',
+    menu: 'M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z',
+    moon: 'M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z',
+    ok: 'M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z',
+    x: 'M18.3 5.7L12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z'
+  };
+  function icon(n, cls) {
+    var s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('width', '20'); s.setAttribute('height', '20'); s.setAttribute('aria-hidden', 'true'); s.setAttribute('focusable', 'false');
+    if (cls) s.setAttribute('class', cls);
+    var p = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p.setAttribute('d', ICON[n] || ICON.info); p.setAttribute('fill', 'currentColor'); s.appendChild(p); return s;
+  }
+  var toastT = null;
+  function toast(msg) {
+    var t = document.getElementById('toast'); t.textContent = msg; t.classList.add('on');
+    clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('on'); }, 3200);
+  }
+  function lc(s) { return String(s || '').toLowerCase(); }
+  function kwHit(text, kws) { var t = lc(text); for (var i = 0; i < kws.length; i++) { if (t.indexOf(lc(kws[i])) >= 0) return true; } return false; }
+
+  /* ---------- rute ---------- */
+  var ROUTES = [
+    { id: 'beranda', t: 'Beranda', e: '🏠', g: 'Mulai' },
+    { id: 'petunjuk', t: 'Kenalan dulu', e: '👋' },
+    { id: 'tujuan', t: 'Yang bakal dipelajari', e: '🎯' },
+    { id: 'diagnostik', t: 'Cek awal', e: '🧭', g: '1 · Pertanyaan pemantik' },
+    { id: 'pemantik', t: 'Pemanasan', e: '💡' },
+    { id: 'materi', t: 'Materi', e: '📘', g: '2 · Materi' },
+    { id: 'terpandu', t: 'Contoh bedah teks', e: '🔎' },
+    { id: 'kartu', t: 'Kartu kalimat', e: '🃏', g: '3 · Soal latihan' },
+    { id: 'formatif', t: 'Soal latihan', e: '✏️' },
+    { id: 'lk1', t: 'Bedah Teks 1', e: '🧩' },
+    { id: 'lk2', t: 'Bedah Teks 2', e: '🧩' },
+    { id: 'sumatif', t: 'Latihan Teks 3', e: '🧪' },
+    { id: 'uji', t: 'Uji pemahaman', e: '🚩', g: '4 · Uji pemahaman (asesmen)' },
+    { id: 'refleksi', t: 'Refleksi', e: '💬', g: '5 · Refleksi' },
+    { id: 'rekap', t: 'Hasil & ketercapaian', e: '🌟' },
+    { id: 'glosarium', t: 'Kamus mini', e: '📖', g: 'Lainnya' },
+    { id: 'pengaturan', t: 'Pengaturan', e: '⚙️' },
+    { id: 'tentang', t: 'Info untuk guru', e: 'ℹ️', hide: true }
+  ];
+  var IDS = { 1: ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10'], 2: ['S1', 'S2', 'S3', 'S4', 'S5'], 3: ['L2-5', 'S6'] };
+  function maxOf(id) { for (var i = 0; i < D.butir.length; i++) { if (D.butir[i][0] === id) return D.butir[i][5]; } return 0; }
+  function sumTP(n) {
+    var s = 0, m = 0, c = 0;
+    IDS[n].forEach(function (id) { m += maxOf(id); var x = S.sc[id]; if (x) { s += x.s || 0; c++; } });
+    return { s: s, m: m, c: c, t: IDS[n].length, p: Math.round(s / m * 100) };
+  }
+  function kat(p) { for (var i = 0; i < D.kategori.length; i++) { if (p >= D.kategori[i].min) return D.kategori[i]; } return D.kategori[3]; }
+  function answered(prefix, n) { var c = 0; for (var i = 0; i < n; i++) { if (lc(S.a[prefix + i]).length >= 10) c++; } return c; }
+  function isDone(id) {
+    switch (id) {
+      case 'petunjuk': return !!S.p.kode;
+      case 'diagnostik': return !!S.diag;
+      case 'pemantik': return answered('pm', 2) >= 1;
+      case 'kartu': return !!S.vis.kartu;
+      case 'materi': return Object.keys(S.mt).length >= 6;
+      case 'formatif': return sumTP(1).c === 10;
+      case 'terpandu': return !!S.vis.terpandu;
+      case 'uji': return !!S.vis.uji;
+      case 'lk1': return answered('lk1_', 6) >= 3;
+      case 'lk2': return !!S.sc['L2-5'];
+      case 'sumatif': return IDS[2].concat(['S6']).every(function (i) { return !!S.sc[i]; });
+      case 'refleksi': return answered('rf', 4) >= 2;
+      default: return false;
+    }
+  }
+  var ORDER = ['petunjuk', 'diagnostik', 'pemantik', 'materi', 'terpandu', 'kartu', 'formatif', 'lk1', 'lk2', 'sumatif', 'uji', 'refleksi', 'rekap'];
+  function nextStep() { for (var i = 0; i < ORDER.length; i++) { if (ORDER[i] !== 'rekap' && !isDone(ORDER[i])) return ORDER[i]; } return 'rekap'; }
+  function routeTitle(id) { for (var i = 0; i < ROUTES.length; i++) { if (ROUTES[i].id === id) return ROUTES[i].t; } return ''; }
+
+  /* ---------- komponen umum ---------- */
+  function pageHead(title, sub, badge) {
+    return h('header', { class: 'phead' }, badge ? h('p', { class: 'eyebrow' }, badge) : null, h('h1', { id: 'ph', tabindex: '-1' }, title), sub ? h('p', { class: 'lead' }, sub) : null);
+  }
+  function card(cls) { var a = Array.prototype.slice.call(arguments, 1); return h.apply(null, ['section', { class: 'card ' + (cls || '') }].concat(a)); }
+  function callout(kind, title, body) { return h('div', { class: 'callout ' + kind }, title ? h('strong', null, title) : null, typeof body === 'string' ? h('p', null, body) : body); }
+  function chip(t, cls) { return h('span', { class: 'chip ' + (cls || '') }, t); }
+  function tableWrap(table) { return h('div', { class: 'tw', tabindex: '0', role: 'region', 'aria-label': 'Tabel, dapat digulir' }, table); }
+  function simpleTable(head, rows) {
+    return tableWrap(h('table', null, h('thead', null, h('tr', null, head.map(function (x) { return h('th', { scope: 'col' }, x); }))), h('tbody', null, rows.map(function (r) { return h('tr', null, r.map(function (c, i) { return i === 0 ? h('th', { scope: 'row' }, c) : h('td', null, c); })); }))));
+  }
+  var uid = 0;
+  function textarea(key, label, rows, opts) {
+    opts = opts || {}; var id = 'f' + (++uid);
+    var ta = h('textarea', { id: id, rows: rows || 3, value: (typeof S.a[key] === 'string' ? S.a[key] : ''), readOnly: !!opts.ro, placeholder: opts.ph || 'Tulis jawabanmu di sini…', autocomplete: 'off', spellcheck: 'true' });
+    ta.addEventListener('input', function () { S.a[key] = ta.value; dirty(); if (opts.on) opts.on(ta.value); });
+    return h('div', { class: 'field' }, h('label', { for: id }, label), ta);
+  }
+  function textBox(key, label, onchg) {
+    var id = 'f' + (++uid);
+    var inp = h('input', { id: id, type: 'text', value: (S.a[key] || ''), autocomplete: 'off' });
+    inp.addEventListener('input', function () { S.a[key] = inp.value; dirty(); if (onchg) onchg(); });
+    return h('div', { class: 'field' }, h('label', { for: id }, label), inp);
+  }
+  function selectBox(key, label, opts, onchg) {
+    var id = 'f' + (++uid);
+    var sel = h('select', { id: id }, opts.map(function (o) { return h('option', { value: o[0], selected: S.a[key] === o[0] }, o[1]); }));
+    sel.addEventListener('change', function () { S.a[key] = sel.value; dirty(); if (onchg) onchg(); });
+    return h('div', { class: 'field' }, h('label', { for: id }, label), sel);
+  }
+  function radioGroup(key, legend, opts, onchg) {
+    var name = 'r' + (++uid);
+    return h('fieldset', { class: 'radios' }, h('legend', null, legend), opts.map(function (o) {
+      var id = name + o[0];
+      var inp = h('input', { type: 'radio', name: name, id: id, value: o[0], checked: S.a[key] === o[0] });
+      inp.addEventListener('change', function () { S.a[key] = o[0]; dirty(); if (onchg) onchg(); });
+      return h('div', { class: 'opt' }, inp, h('label', { for: id }, o[1]));
+    }));
+  }
+  function textBlock(paras, title) {
+    return h('figure', { class: 'teks' }, title ? h('figcaption', null, title) : null, paras.map(function (p) { return h('p', null, p); }));
+  }
+
+  /* ---------- mesin penilaian: butir objektif (F1–F8) ---------- */
+  function evalF(cfg, v) {
+    return cfg.parts.map(function (p) {
+      var got = false;
+      if (p.fn === 'f7a') { var t = lc(v.p); got = /bahwa/.test(t) && !/[“”"]/.test(t) && /(mereka|para siswa|siswa|murid|anak)/.test(t); }
+      else if (p.fn === 'f7b') { var t2 = lc(v.q), c = 0; if (/petik/.test(t2)) c++; if (/bahwa/.test(t2)) c++; if (/(kata ganti|kalian|mereka)/.test(t2)) c++; got = c >= 2; }
+      else if (p.ansf) got = (v[p.ansf] || '') === p.ans;
+      else if (p.acc) got = p.acc.indexOf(v.k) >= 0;
+      else if (p.ans) got = v.k === p.ans;
+      else if (p.kw) got = kwHit(v[p.f], p.kw);
+      return { l: p.l, got: got, auto: p.auto && !(p.fn === 'f7a'), key: p.key };
+    });
+  }
+  function scoreF(cfg, res, self) {
+    var n = 0; res.forEach(function (r, i) { if (r.got || (self && self[i])) n++; });
+    if (cfg.special === 'f8') return n >= 3 ? 2 : (n === 2 ? 1 : 0);
+    return Math.min(cfg.max, n);
+  }
+  function fItem(cfg) {
+    var v = S.a[cfg.id]; if (!v || typeof v !== 'object') { v = {}; S.a[cfg.id] = v; }
+    var resultBox = h('div', { class: 'result', 'aria-live': 'polite' });
+    var wrap = h('article', { class: 'q', id: 'q-' + cfg.id });
+    wrap.appendChild(h('div', { class: 'qhead' }, h('span', { class: 'qid' }, cfg.id), chip(cfg.max + ' poin')));
+    wrap.appendChild(h('p', { class: 'qtext' }, cfg.q));
+    var fields = h('div', { class: 'fields' });
+    cfg.f.forEach(function (f) {
+      var id = 'f' + (++uid), node;
+      if (f.t === 'kaidah' || f.t === 'majas') {
+        var opts = f.t === 'kaidah' ? D.kaidahOpsi : [['', '— pilih —'], ['ironi', 'Ironi'], ['sinisme', 'Sinisme'], ['sarkasme', 'Sarkasme']];
+        var sel = h('select', { id: id }, opts.map(function (o) { return h('option', { value: o[0], selected: v[f.n] === o[0] }, o[1]); }));
+        sel.addEventListener('change', function () { v[f.n] = sel.value; dirty(); });
+        node = h('div', { class: 'field' }, h('label', { for: id }, f.t === 'majas' ? 'Kalimat (' + f.l + ')' : f.l), sel);
+      } else if (f.t === 'radio') {
+        var name = 'r' + (++uid);
+        node = h('fieldset', { class: 'radios' }, h('legend', null, 'Pilihan'), f.o.map(function (o) {
+          var rid = name + o[0];
+          var inp = h('input', { type: 'radio', name: name, id: rid, value: o[0], checked: v[f.n] === o[0] });
+          inp.addEventListener('change', function () { v[f.n] = o[0]; dirty(); });
+          return h('div', { class: 'opt' }, inp, h('label', { for: rid }, o[1]));
+        }));
+      } else {
+        var inp2 = h('input', { id: id, type: 'text', value: v[f.n] || '', autocomplete: 'off' });
+        inp2.addEventListener('input', function () { v[f.n] = inp2.value; dirty(); });
+        node = h('div', { class: 'field' }, h('label', { for: id }, f.l), inp2);
+      }
+      fields.appendChild(node);
+    });
+    wrap.appendChild(fields);
+    var btn = h('button', { class: 'btn primary', type: 'button' }, 'Cek jawabanku');
+    btn.addEventListener('click', function () {
+      var any = false; for (var k in v) { if (v[k]) any = true; }
+      if (!any) { toast('Isi jawabanmu dulu.'); return; }
+      var res = evalF(cfg, v);
+      var old = S.sc[cfg.id];
+      var self = (old && old.self) ? old.self : {};
+      S.sc[cfg.id] = { s: scoreF(cfg, res, self), self: self, got: res.map(function (r) { return r.got ? 1 : 0; }) };
+      dirty(); renderResult(); updateNav();
+    });
+    wrap.appendChild(btn);
+    wrap.appendChild(resultBox);
+    function renderResult() {
+      var sc = S.sc[cfg.id]; resultBox.textContent = ''; if (!sc) return;
+      var res = evalF(cfg, v);
+      var list = h('ul', { class: 'plist' });
+      res.forEach(function (r, i) {
+        var okk = r.got || sc.self[i];
+        var li = h('li', { class: okk ? 'ok' : 'bad' }, icon(okk ? 'ok' : 'x'), h('div', null, h('strong', null, r.l + ': ' + (okk ? 'tepat' : 'belum tepat')), h('p', null, r.key)));
+        if (!r.got && !r.auto || (!r.got && cfg.parts[i].fn)) {
+          var cid = 'c' + (++uid);
+          var cb = h('input', { type: 'checkbox', id: cid, checked: !!sc.self[i] });
+          cb.addEventListener('change', function () {
+            sc.self[i] = cb.checked ? 1 : 0; sc.s = scoreF(cfg, evalF(cfg, v), sc.self); dirty(); renderResult(); updateNav();
+          });
+          li.querySelector('div').appendChild(h('div', { class: 'selfcb' }, cb, h('label', { for: cid }, 'Maksud jawabanku sebenarnya sama dengan kunci')));
+        }
+        list.appendChild(li);
+      });
+      resultBox.appendChild(h('div', { class: 'score' }, 'Nilai soal: ', h('strong', null, sc.s + ' / ' + cfg.max)));
+      resultBox.appendChild(list);
+    }
+    renderResult();
+    return wrap;
+  }
+
+  /* ---------- mesin penilaian: uraian (daftar periksa komponen) ---------- */
+  var KAIDAH_RX = [/lampau|latar waktu/, /material|kata kerja/, /(^|[^k] )langsung|kalimat langsung|dialog/, /tidak langsung/, /temporal|kemudian|lalu|akhirnya/, /retoris|sindiran/, /sebab|akibat|sehingga|karena/, /ironi|majas|sinisme|sarkasme/, /perintah|seru/];
+  function suggest(id, text) {
+    var cfg = D.E[id], t = lc(text), out = [0, 0, 0, 0];
+    if (cfg.suggest) {
+      var n = 0; KAIDAH_RX.forEach(function (rx) { if (rx.test(t)) n++; });
+      var cap = cfg.suggest === 'kaidah3' ? 3 : 4;
+      for (var i = 0; i < Math.min(n, cap); i++) out[i] = 1;
+      if (cfg.suggest === 'kaidah3') { var m = t.match(/fungsi|berfungsi|menandai|menggambarkan|menyindir|menetapkan|menunjukkan|mengatur/g); out[3] = (m && m.length >= 2) ? 1 : 0; }
+      return out;
+    }
+    cfg.kw.forEach(function (k, i) { out[i] = kwHit(t, k) ? 1 : 0; });
+    return out;
+  }
+  function eItem(id, opts) {
+    opts = opts || {};
+    var cfg = D.E[id];
+    var wrap = h('article', { class: 'q', id: 'q-' + id });
+    wrap.appendChild(h('div', { class: 'qhead' }, h('span', { class: 'qid' }, id), chip('4 poin')));
+    wrap.appendChild(h('p', { class: 'qtext' }, cfg.q));
+    var area = h('div', { class: 'earea' });
+    wrap.appendChild(area);
+    function draw() {
+      area.textContent = '';
+      var sc = S.sc[id], locked = !!(sc && sc.locked);
+      var ta = textarea(id, 'Jawabanmu', cfg.rows, { ro: locked, on: function (val) { bt.disabled = lc(val).trim().length < 15; } });
+      area.appendChild(ta);
+      var bt = h('button', { class: 'btn primary', type: 'button', disabled: lc(S.a[id]).trim().length < 15 }, 'Kunci jawaban & nilai sendiri');
+      if (!locked) {
+        bt.addEventListener('click', function () {
+          var c = suggest(id, S.a[id] || '');
+          S.sc[id] = { locked: true, c: c, s: c.reduce(function (a, b) { return a + b; }, 0) };
+          dirty(); draw(); updateNav(); toast('Jawaban terkunci. Sekarang centang bagian yang memang ada di jawabanmu ya.');
+        });
+        area.appendChild(bt);
+        area.appendChild(h('p', { class: 'hint' }, 'Tulis minimal 15 huruf. Pedoman nilainya kebuka setelah jawabanmu dikunci.'));
+      } else {
+        var fs = h('fieldset', { class: 'checks' }, h('legend', null, 'Daftar cek (tiap bagian yang ada = 1 poin)'));
+        cfg.comps.forEach(function (ct, i) {
+          var cid = 'k' + (++uid);
+          var cb = h('input', { type: 'checkbox', id: cid, checked: !!sc.c[i] });
+          cb.addEventListener('change', function () {
+            sc.c[i] = cb.checked ? 1 : 0; sc.s = sc.c.reduce(function (a, b) { return a + b; }, 0);
+            dirty(); scoreEl.firstChild.nextSibling.textContent = sc.s + ' / 4'; updateNav();
+          });
+          fs.appendChild(h('div', { class: 'opt' }, cb, h('label', { for: cid }, ct)));
+        });
+        var scoreEl = h('div', { class: 'score' }, 'Nilai soal: ', h('strong', null, sc.s + ' / 4'));
+        area.appendChild(scoreEl);
+        area.appendChild(callout('info', 'Cara nilai sendiri', 'Centang otomatis itu cuma tebakan dari kata kunci. Centang atau hapus sesuai isi jawabanmu yang sebenarnya ya. Jujur aja, ini buat belajarmu sendiri.'));
+        area.appendChild(fs);
+        if (cfg.contoh) area.appendChild(h('details', { class: 'det' }, h('summary', null, 'Contoh jawaban'), h('p', null, cfg.contoh)));
+        var re = h('button', { class: 'btn ghost', type: 'button' }, 'Ubah jawaban');
+        re.addEventListener('click', function () { delete S.sc[id]; dirty(); draw(); updateNav(); });
+        area.appendChild(re);
+      }
+    }
+    draw();
+    return wrap;
+  }
+
+  /* ---------- halaman ---------- */
+  var PAGES = {};
+
+  var DECO = '<svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" role="presentation"><g fill="#fff" opacity=".92"><circle cx="58" cy="44" r="18"/><circle cx="82" cy="36" r="24"/><circle cx="110" cy="46" r="18"/><rect x="48" y="44" width="76" height="20" rx="10"/></g><g><rect x="150" y="62" width="150" height="62" rx="24" fill="#2563eb"/><path d="M190 122l-10 24 32-24z" fill="#2563eb"/><text x="225" y="102" font-size="24" font-weight="700" fill="#fff" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif">Haha! \ud83d\ude02</text></g><g><rect x="30" y="140" width="150" height="56" rx="22" fill="#fff"/><path d="M140 194l10 22 10-22z" fill="#fff"/><text x="105" y="175" font-size="20" font-weight="700" fill="#1e3a8a" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif">Nyindir? \ud83e\udd14</text></g><g fill="#fbbf24"><polygon points="272,24 277,38 292,38 280,47 285,62 272,53 259,62 264,47 252,38 267,38"/><polygon points="40,104 43,112 52,112 45,117 48,126 40,121 32,126 35,117 28,112 37,112" /><polygon points="296,170 299,178 308,178 301,183 304,192 296,187 288,192 291,183 284,178 293,178"/></g><g fill="#60a5fa"><circle cx="210" cy="16" r="5"/><circle cx="130" cy="120" r="4"/><circle cx="300" cy="130" r="4"/></g></svg>';
+  var SKILLS = [
+    ['🔍', 'Kenal tujuh kaidah', 'Nemuin kaidah kebahasaan di kalimat dan paragraf anekdot, lengkap sama penandanya, dan bisa bedain yang mirip-mirip.', 1],
+    ['🎭', 'Ngerti kenapa lucu dan nyindir', 'Jelasin gimana kaidah itu bikin ceritanya jalan, lucu, dan nyindir, pakai kutipan sebagai bukti.', 2],
+    ['⚖️', 'Menilai kritiknya', 'Nentuin apakah kritik di anekdot udah santun atau kelewat nyelekit, plus alasannya.', 3]
+  ];
+  var FRIEND = { 1: 'Mengenali kaidah', 2: 'Menghubungkan kaidah dengan humor', 3: 'Menilai kesantunan kritik' };
+  function meter(n) {
+    var r = sumTP(n), k = kat(r.p), has = r.c > 0;
+    return [h('div', { class: 'bar', role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': String(has ? r.p : 0), 'aria-label': FRIEND[n] }, h('span', { class: 'k-' + (has ? k.c : 'none'), style: 'width:' + (has ? r.p : 0) + '%' })),
+      has ? h('p', null, chip(k.n + ' · ' + r.p + '%', 'k-' + k.c), r.c < r.t ? h('span', { class: 'hint' }, ' (sementara)') : null) : h('p', { class: 'hint' }, 'Belum dikerjain')];
+  }
+
+  var deferred = null;
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; var b = document.getElementById('instBtn'); if (b) b.hidden = false; });
+  function installCard() {
+    if ((window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone) return null;
+    var btn = h('button', { class: 'btn primary', type: 'button', id: 'instBtn', onclick: function () { if (!deferred) return; deferred.prompt(); deferred = null; this.hidden = true; } }, '📲 Instal sekarang');
+    btn.hidden = !deferred;
+    function steps(t, a, o) { return h('details', { class: 'det', open: o }, h('summary', null, t), h('ol', null, a.map(function (x) { return h('li', null, x); }))); }
+    return h('section', { class: 'card install' }, h('h2', null, '📲 Jadikan aplikasi di HP'),
+      h('p', { class: 'hint' }, 'Pasang sekali, ikonnya muncul di layar utama dan bisa dibuka tanpa internet. Buka lewat tautan (https) dari guru, bukan dari berkas di penyimpanan.'),
+      steps('Android (Chrome)', ['Buka tautan aplikasi di Chrome.', 'Ketuk ikon titik tiga ⋮ di pojok kanan atas.', 'Pilih “Instal aplikasi” (atau “Tambahkan ke layar utama”).', 'Ketuk “Instal”, lalu buka dari ikon “Belajar Anekdot”.'], true),
+      steps('iPhone / iPad', ['Buka tautan di Chrome atau Safari.', 'Ketuk ikon Bagikan (kotak dengan panah ke atas).', 'Pilih “Tambah ke Layar Utama”, lalu ketuk “Tambah”.'], false),
+      steps('Laptop (Chrome)', ['Klik ikon instal di ujung kanan kolom alamat.', 'Klik “Instal”.'], false), btn);
+  }
+  PAGES.beranda = function () {
+    var n = nextStep();
+    var steps = ORDER.filter(function (x) { return x !== 'rekap'; }), doneN = steps.filter(isDone).length;
+    var pct = Math.round(doneN / steps.length * 100);
+    var hero = h('section', { class: 'hero' },
+      h('div', { class: 'hero-in' },
+        h('p', { class: 'eyebrow' }, 'Bahasa Indonesia · Kelas X'),
+        h('h1', { id: 'ph', tabindex: '-1' }, 'Bedah Bahasa Teks Anekdot'),
+        h('p', { class: 'lead' }, 'Cari tahu kenapa cerita lucu bisa sekaligus nyindir. Belajarnya santai, dan bisa tanpa internet.'),
+        h('div', { class: 'row' },
+          h('a', { class: 'btn primary', href: '#' + n }, isDone(n) ? 'Lihat hasilku' : (n === 'petunjuk' && !S.p.kode && !S.p.nama ? 'Mulai belajar' : 'Lanjut: ' + routeTitle(n))),
+          h('a', { class: 'btn ghost', href: '#tujuan' }, 'Apa yang dipelajari?'))),
+      h('div', { class: 'deco', 'aria-hidden': 'true', html: DECO }));
+    var prog = card('', h('h2', null, 'Progresmu ✨'),
+      h('div', { class: 'bar', role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': String(pct), 'aria-label': 'Progres belajar' }, h('span', { style: 'width:' + pct + '%' })),
+      h('p', { class: 'hint' }, doneN + ' dari ' + steps.length + ' langkah beres (' + pct + '%).'),
+      S.jalur ? h('p', null, 'Jalurmu: ', chip(D.jalur[S.jalur].n, 'lv'), ' ', D.jalur[S.jalur].d) : h('p', { class: 'hint' }, 'Kerjain Cek awal dulu biar kelihatan jalur belajar yang pas buatmu.'));
+    var sk = card('', h('h2', null, 'Nanti kamu bakal bisa…'), h('div', { class: 'skills' }, SKILLS.map(function (s) {
+      return h('div', { class: 'skill' }, h('span', { class: 'big', 'aria-hidden': 'true' }, s[0]), h('h3', null, s[1]), h('p', null, s[2]), meter(s[3]));
+    })));
+    var how = card('', h('h2', null, 'Alurnya gini'), h('ol', { class: 'flow' },
+      h('li', null, h('strong', null, 'Pertanyaan pemantik. '), 'Cek awal 2 soal dan 2 pertanyaan pemanasan buat nyalain pikiranmu.'),
+      h('li', null, h('strong', null, 'Materi. '), 'Pelajari tujuh kaidah, lalu lihat contoh bedah teks.'),
+      h('li', null, h('strong', null, 'Soal latihan. '), 'Latihan soal, lalu bedah tiga teks sendiri.'),
+      h('li', null, h('strong', null, 'Uji pemahaman. '), '40 soal lewat Google Form (30 pilihan ganda, 5 uraian, 5 menjodohkan), dikirim ke guru.'),
+      h('li', null, h('strong', null, 'Refleksi. '), 'Renungin apa yang udah kamu bisa, lalu lihat hasil dan ketercapaianmu.')));
+    var ases = card('', h('h2', null, 'Soal dan asesmen di aplikasi ini 📝'), h('p', { class: 'hint' }, 'Latihan dinilai otomatis atau lewat daftar cek di aplikasi. Asesmen utamanya dikerjakan lewat Google Form dan dikirim ke guru.'), simpleTable(['Tahap', 'Isinya', 'Buka'], [
+      ['1 · Pemantik', 'Cek awal 2 soal singkat (nggak masuk nilai) untuk menentukan jalur belajarmu.', h('a', { href: '#diagnostik' }, 'Cek awal')],
+      ['3 · Soal latihan', '10 soal latihan, Bedah Teks 1 dan 2, dan Latihan Teks 3 dengan kunci dan umpan balik.', h('a', { href: '#formatif' }, 'Soal latihan')],
+      ['4 · Uji pemahaman', '40 soal lewat Google Form: 30 pilihan ganda, 5 uraian, dan 5 menjodohkan (70 poin). Butuh internet.', h('a', { href: '#uji' }, 'Uji pemahaman')],
+      ['5 · Refleksi', 'Refleksi, penilaian diri, dan hasil latihanmu.', h('a', { href: '#refleksi' }, 'Refleksi')]]));
+    var off = callout('info', 'Bisa tanpa internet 📶', 'Aplikasi ini bisa dibuka tanpa kuota. Jawabanmu tersimpan di HP ini. Tiap selesai satu tahap, tinggal tekan "Unggah progres" biar hasilnya masuk ke guru.');
+    return [installCard(), hero, h('div', { class: 'stack' }, prog, sk, ases, how, off)];
+  };
+
+  PAGES.petunjuk = function () {
+    var kode = h('input', { id: 'kode', type: 'text', value: S.p.kode, maxlength: '24', autocomplete: 'off', placeholder: 'mis. X3-07' });
+    var nama = h('input', { id: 'nama', type: 'text', value: S.p.nama, maxlength: '40', autocomplete: 'off', placeholder: 'nama panggilanmu' });
+    kode.addEventListener('input', function () { S.p.kode = kode.value.trim(); dirty(); updateNav(); });
+    nama.addEventListener('input', function () { S.p.nama = nama.value.trim(); dirty(); });
+    return [pageHead('Kenalan dulu 👋', 'Baca sebentar, terus isi nama ya.'),
+    card('', h('h2', null, 'Cara belajarnya'), h('ul', { class: 'bul' },
+      h('li', null, 'Belajar sendiri aja, kapan pun dan di mana pun. Tiap sesi sekitar 90 menit, boleh dicicil kok.'),
+      h('li', null, 'Ikuti urutan menu. Kalau udah beres, muncul tanda centang hijau.'),
+      h('li', null, 'Tulis jawabanmu dulu, baru buka kuncinya. Jangan nyontek duluan ya, hehe.'),
+      h('li', null, 'Soal uraian kamu nilai sendiri pakai daftar cek. Saran otomatisnya cuma bantuan, kamu yang mutusin.'),
+      h('li', null, 'Semua tersimpan otomatis di HP ini, dan tetap jalan tanpa internet.'),
+      h('li', null, 'Selesai satu tahap? Tekan "Unggah progres" biar hasilmu masuk ke guru.'))),
+    card('', h('h2', null, 'Siapa kamu?'), h('p', { class: 'hint' }, 'Cukup nama panggilan dan kelas + nomor absen. Nggak perlu data lain.'),
+      h('div', { class: 'field' }, h('label', { for: 'nama' }, 'Nama panggilan'), nama), h('div', { class: 'field' }, h('label', { for: 'kode' }, 'Kelas dan nomor absen'), kode),
+      h('a', { class: 'btn primary', href: '#diagnostik' }, 'Lanjut ke Cek awal'))];
+  };
+
+  var TUJUAN = [
+    ['🔍', 'Kenal tujuh kaidah kebahasaan', ['Tahu apa itu tiap kaidah dan buat apa gunanya.', 'Nemuin penandanya di kalimat anekdot.', 'Bisa bedain kaidah yang sering ketuker, misalnya kalimat retoris vs kalimat tanya biasa.', 'Jelasin fungsi kaidah di paragraf.']],
+    ['🎭', 'Ngerti hubungan kaidah, humor, dan sindiran', ['Nunjukin kutipan sebagai bukti kaidah dipakai.', 'Jelasin gimana kaidah itu bikin cerita jalan, lucu, dan nyindir.', 'Bisa ngelakuin ini di teks baru yang belum pernah kamu baca.']],
+    ['⚖️', 'Menilai kesantunan kritik', ['Nentuin apakah kritik pakai ironi, sinisme, atau sarkasme.', 'Menilai santun atau nggaknya, lengkap dengan alasan.', 'Bandingin ungkapan lain dan dampaknya.']]
+  ];
+  PAGES.tujuan = function () {
+    return [pageHead('Yang bakal dipelajari 🎯', 'Tiga hal yang nanti kamu kuasai setelah belajar di sini.'),
+    TUJUAN.map(function (t) { return card('', h('h2', null, t[0] + ' ' + t[1]), h('ul', { class: 'bul' }, t[2].map(function (i) { return h('li', null, i); }))); }),
+    card('', h('h2', null, 'Peta belajar'), simpleTable(['Tahap', 'Kamu ngapain', 'Isinya'], [
+      ['1 · Pertanyaan pemantik', 'Pemanasan, tanpa perlu tahu istilah', 'Cek awal dan pemanasan'],
+      ['2 · Materi', 'Kenalan sama tujuh kaidah', 'Materi dan contoh bedah teks'],
+      ['3 · Soal latihan', 'Latihan dan bedah teks sendiri', 'Kartu kalimat, soal latihan, Bedah Teks 1 dan 2, Latihan Teks 3'],
+      ['4 · Uji pemahaman', 'Asesmen 40 soal lewat Google Form', 'Uji pemahaman (30 PG + 5 uraian + 5 menjodohkan)'],
+      ['5 · Refleksi', 'Renungin dan lihat hasil', 'Refleksi, hasil, ketercapaian']]))];
+  };
+
+  PAGES.diagnostik = function () {
+    var out = h('div', { 'aria-live': 'polite' });
+    function show() {
+      out.textContent = '';
+      if (!S.diag) return;
+      var j = D.jalur[S.jalur];
+      out.appendChild(callout('ok', 'Jalur belajarmu: ' + j.n, h('p', null, j.d + ' ' + (S.diag.d3 ? 'Nomor 1 tepat.' : 'Nomor 1 belum tepat: kalimat (b) menyindir karena pujiannya berlawanan dengan kenyataan.'))));
+      out.appendChild(h('a', { class: 'btn primary', href: '#pemantik' }, 'Lanjut ke Pemanasan'));
+    }
+    var KENAL = [['0', 'Belum pernah dengar istilahnya'], ['1', 'Pernah dengar, tapi belum paham'], ['2', 'Lumayan paham']];
+    var btn = h('button', { class: 'btn primary', type: 'button' }, 'Simpan & lihat jalurku');
+    btn.addEventListener('click', function () {
+      if (!S.a.d3 || !S.a.d5) { toast('Jawab dua-duanya dulu ya.'); return; }
+      var d3 = S.a.d3 === D.diag.d3.k, k = parseInt(S.a.d5, 10) || 0, d2 = k >= 2;
+      S.diag = { d3: d3, d2: d2, kenal: k };
+      S.jalur = (d3 && d2) ? 'siap' : ((d3 || k >= 1) ? 'penguatan' : 'bimbingan');
+      dirty(); show(); updateNav(); toast('Tersimpan.');
+    });
+    var page = [pageHead('Cek awal', 'Cuma 2 soal singkat dan nggak masuk nilai. Jawab sesuai yang kamu rasain sekarang.', '1 · Pertanyaan pemantik'),
+    card('', radioGroup('d3', '1. ' + D.diag.d3.q, D.diag.d3.o),
+      radioGroup('d5', '2. Seberapa kenal kamu sama kaidah kebahasaan teks anekdot (kalimat retoris, konjungsi, kata kerja, dll.)?', KENAL),
+      btn), out];
+    setTimeout(show, 0);
+    return page;
+  };
+
+  PAGES.pemantik = function () {
+    return [pageHead('Pemanasan', 'Dua pertanyaan aja, jawabannya nggak harus bener. Tulis satu atau dua kalimat sesuai pendapatmu.', '1 · Pertanyaan pemantik'),
+    card('', D.pemantik.slice(0, 2).map(function (q, i) { return textarea('pm' + i, (i + 1) + '. ' + q, 3); }), h('a', { class: 'btn primary', href: '#materi' }, 'Lanjut ke Materi'))];
+  };
+
+  PAGES.kartu = function () {
+    var order = [2, 5, 0, 3, 6, 1, 4];
+    var res = h('div', { 'aria-live': 'polite' });
+    S.kartu = S.kartu || {};
+    var cards = order.map(function (i, idx) {
+      var k = D.kartu[i]; var st = S.kartu[k.id] || (S.kartu[k.id] = { sel: '', al: '' });
+      var sid = 'kc' + k.id, aid = 'ka' + k.id;
+      var sel = h('select', { id: sid }, D.kaidahOpsi.map(function (o) { return h('option', { value: o[0], selected: st.sel === o[0] }, o[1]); }));
+      sel.addEventListener('change', function () { st.sel = sel.value; dirty(); });
+      var al = h('input', { id: aid, type: 'text', value: st.al, placeholder: 'Penanda atau alasanmu (singkat)', autocomplete: 'off' });
+      al.addEventListener('input', function () { st.al = al.value; dirty(); });
+      var fb = h('div', { class: 'fb', id: 'fb' + k.id });
+      return h('li', { class: 'kcard' }, h('p', { class: 'ktext' }, h('span', { class: 'kn' }, 'Kartu ' + (idx + 1)), k.t),
+        h('div', { class: 'field' }, h('label', { for: sid }, 'Kaidah yang paling kelihatan'), sel), h('div', { class: 'field' }, h('label', { for: aid }, 'Alasan'), al), fb);
+    });
+    var btn = h('button', { class: 'btn primary', type: 'button' }, 'Cek semua kartu');
+    btn.addEventListener('click', function () {
+      var ok = 0, filled = 0;
+      D.kartu.forEach(function (k) {
+        var st = S.kartu[k.id], fb = document.getElementById('fb' + k.id);
+        if (st.sel) filled++;
+        var good = st.sel === k.a; if (good) ok++;
+        fb.className = 'fb ' + (st.sel ? (good ? 'ok' : 'bad') : '');
+        fb.textContent = st.sel ? (good ? 'Tepat. ' : 'Belum tepat; kunci: ' + D.kaidahNama[k.a] + '. ') + k.petunjuk : 'Pilih kaidah dulu.';
+      });
+      if (filled < 7) { toast('Beberapa kartu belum dipilih.'); }
+      S.vis.kartu = true; dirty(); updateNav();
+      res.textContent = ''; res.appendChild(callout(ok >= 6 ? 'ok' : 'info', 'Hasil: ' + ok + ' dari 7 kartu tepat', 'Satu kalimat bisa punya lebih dari satu kaidah, tapi di sini yang dicari yang paling menonjol. Kalau masih ragu, balik ke Materi dulu.'));
+      res.appendChild(h('a', { class: 'btn primary', href: '#formatif' }, 'Lanjut ke Soal latihan'));
+    });
+    return [pageHead('Kartu kalimat', 'Sekarang kamu udah kenal tujuh kaidahnya. Coba tentukan kaidah yang paling kelihatan di tiap kalimat. Pilihan salah nggak apa-apa, kuncinya muncul setelah dicek.', '3 · Soal latihan'),
+    h('ol', { class: 'kcards' }, cards), card('', btn, res)];
+  };
+
+  PAGES.materi = function () {
+    var tabs = [
+      ['t1', 'Pengertian dan struktur'], ['t2', 'Tujuh kaidah'], ['t3', 'Penanda tambahan'], ['t4', 'Humor dan kritik'], ['t5', 'Alur analisis'], ['t6', 'Pasangan tertukar']
+    ];
+    var panel = h('div', { class: 'panel', role: 'tabpanel', tabindex: '0' });
+    var bar = h('div', { class: 'tabs', role: 'tablist', 'aria-label': 'Bagian materi' });
+    var cur = 't1';
+    function pick(id) {
+      cur = id; S.mt[id] = 1; dirty(); updateNav();
+      Array.prototype.forEach.call(bar.children, function (b) { var on = b.dataset.t === id; b.setAttribute('aria-selected', on ? 'true' : 'false'); b.tabIndex = on ? 0 : -1; });
+      panel.textContent = ''; panel.setAttribute('aria-labelledby', 'tab-' + id); panel.appendChild(M[id]());
+      var idx = tabs.findIndex(function (x) { return x[0] === id; });
+      var nav = h('div', { class: 'row sb pn' });
+      if (idx > 0) nav.appendChild(h('button', { class: 'btn ghost', type: 'button', onclick: function () { pick(tabs[idx - 1][0]); focusTop(); } }, '‹ ' + tabs[idx - 1][1]));
+      else nav.appendChild(h('span'));
+      if (idx < tabs.length - 1) nav.appendChild(h('button', { class: 'btn primary', type: 'button', onclick: function () { pick(tabs[idx + 1][0]); focusTop(); } }, tabs[idx + 1][1] + ' ›'));
+      else nav.appendChild(h('a', { class: 'btn primary', href: '#terpandu' }, 'Ke Contoh bedah teks'));
+      panel.appendChild(nav);
+    }
+    function focusTop() { window.scrollTo(0, 0); var f = document.getElementById('ph'); if (f) f.focus(); }
+    tabs.forEach(function (t, i) {
+      var b = h('button', { role: 'tab', id: 'tab-' + t[0], type: 'button', 'data-t': t[0], 'aria-selected': i === 0 ? 'true' : 'false', 'aria-controls': 'tp' }, t[1]);
+      b.addEventListener('click', function () { pick(t[0]); });
+      b.addEventListener('keydown', function (e) {
+        var ix = tabs.findIndex(function (x) { return x[0] === cur; });
+        if (e.key === 'ArrowRight') { ix = (ix + 1) % tabs.length; } else if (e.key === 'ArrowLeft') { ix = (ix + tabs.length - 1) % tabs.length; } else return;
+        e.preventDefault(); pick(tabs[ix][0]); document.getElementById('tab-' + tabs[ix][0]).focus();
+      });
+      bar.appendChild(b);
+    });
+    panel.id = 'tp';
+    var M = {};
+    M.t1 = function () {
+      return h('div', { class: 'stack' }, card('', h('h2', null, 'Apa itu kaidah kebahasaan?'), h('p', null, 'Kaidah kebahasaan teks anekdot adalah ciri dan pola pemakaian bahasa yang membantu membentuk cerita, menghadirkan kelucuan, serta menyampaikan sindiran atau kritik. Tidak semua kaidah muncul dalam setiap anekdot; pemilihannya bergantung pada isi, tujuan, dan cara penulis bercerita.')),
+        card('', h('h2', null, 'Letak kaidah dalam struktur anekdot'), h('p', { class: 'hint' }, 'Kecenderungan, bukan aturan mutlak. Struktur mengacu pada Buku Teks Bahasa Indonesia Kelas X, Kemendikbudristek (2023).'), simpleTable(['Struktur', 'Isi bagian', 'Kaidah yang sering muncul'], D.struktur)));
+    };
+    M.t2 = function () {
+      return h('div', { class: 'stack' }, h('p', { class: 'hint' }, 'Buka satu-satu tiap kaidah. Kata yang distabilo kuning itu penandanya.'), D.kaidah.map(function (k, i) {
+        return h('details', { class: 'acc', open: i === 0 }, h('summary', null, h('span', { class: 'kb' }, k.kode), k.nama),
+          h('div', { class: 'accb' }, h('p', null, h('strong', null, 'Pengertian. '), k.pengertian),
+            h('p', null, h('strong', null, 'Penanda')), h('div', { class: 'chips' }, k.penanda.map(function (p) { return chip(p); })),
+            h('p', null, h('strong', null, 'Contoh')), k.contoh.map(function (c) { return h('p', { class: 'ex', html: c }); }),
+            h('p', null, h('strong', null, 'Fungsi dalam anekdot. '), k.fungsi), callout('warn', 'Hati-hati', k.awas)));
+      }));
+    };
+    M.t3 = function () {
+      return card('', h('h2', null, 'Kalimat perintah dan seru (pengayaan)'), h('p', null, 'Contoh: “Alasan itu lagi!”, “Cepat ke lapangan!”. Kalimat ini menampilkan sikap atau emosi tokoh (kesal, berwibawa) sehingga memperkuat ironi.'), h('p', { class: 'hint' }, 'Gunakan sebagai tantangan saat menganalisis Teks 2 dan Teks 3.'));
+    };
+    M.t4 = function () {
+      return h('div', { class: 'stack' }, card('', h('h2', null, 'Hubungan kaidah dengan humor dan kritik'), h('p', null, 'Kaidah kebahasaan tidak berdiri sendiri. Dialog memperlihatkan perbedaan pandangan antartokoh; konjungsi temporal mengatur urutan kejadian; kata kerja material menunjukkan tindakan; kalimat retoris dan majas sindiran mengarahkan pembaca pada sindiran.'),
+        h('h3', null, 'Sumber humor yang umum'), h('ul', { class: 'bul' }, h('li', null, h('strong', null, 'Ketidaksesuaian '), 'harapan dan kenyataan (mis. “pelayanan kilat” yang memakan seminggu).'), h('li', null, h('strong', null, 'Kejutan '), 'di bagian akhir (koda) yang membalik dugaan pembaca.'), h('li', null, h('strong', null, 'Ironi/sindiran: '), 'maksud tersirat berbeda dari ucapan.'))),
+        card('', h('h2', null, 'Kritik sosial'), h('p', null, 'Kritik sosial muncul ketika situasi lucu itu mengungkap perilaku, kebiasaan, atau sistem yang perlu diperbaiki. Anekdot yang baik mengkritik perilaku atau kebijakan, bukan menghina pribadi atau kelompok (SARA).'), callout('info', 'Tingkat kesantunan', 'Buku teks Kemendikbudristek (2023) menyebut ironi dan sinisme lebih diterima dalam anekdot karena kritiknya lebih santun, sedangkan sarkasme menyerang secara terang-terangan.')));
+    };
+    M.t5 = function () {
+      return card('', h('h2', null, 'Tandai – Kutip – Jelaskan – Hubungkan'), simpleTable(['Langkah', 'Yang dilakukan', 'Contoh (bukan dari Teks 1–3)'], [
+        ['1. Tandai', 'Temukan penanda kebahasaan dan sebutkan kaidahnya.', 'Kalimat retoris, penanda “Bukankah … sudah dilaporkan … ?”'],
+        ['2. Kutip', 'Tulis kutipan sebagai bukti.', '“Bukankah lampu kelas sudah dilaporkan rusak sejak bulan lalu?”'],
+        ['3. Jelaskan', 'Terangkan fungsi kaidah itu dalam cerita.', 'Menyindir pihak yang lalai tanpa menyebut siapa pun.'],
+        ['4. Hubungkan', 'Kaitkan dengan efek humor dan/atau kritik.', 'Kritik terasa halus karena pembaca diajak menyimpulkan sendiri bahwa laporan tidak ditindaklanjuti.']]),
+        callout('info', 'Kerangka kalimat', '“Kaidah … terlihat pada kutipan ‘…’. Fungsinya adalah … sehingga … (humor/kritik).”'));
+    };
+    M.t6 = function () {
+      return h('div', { class: 'stack' }, card('', h('h2', null, 'Pasangan kaidah yang sering tertukar'), simpleTable(['Pasangan', 'Uji cepat', 'Contoh pembeda'], D.pembeda)), uji());
+    };
+    function uji() {
+      var box = h('div', { class: 'uji', 'aria-live': 'polite' }), hist = [];
+      function go(id) {
+        box.textContent = ''; var n = D.uji[id];
+        if (n.q) {
+          box.appendChild(h('p', { class: 'uq' }, n.q));
+          var row = h('div', { class: 'row' },
+            h('button', { class: 'btn primary', type: 'button', onclick: function () { hist.push(id); go(n.y); } }, 'Ya'),
+            h('button', { class: 'btn ghost', type: 'button', onclick: function () { hist.push(id); go(n.n); } }, 'Tidak'));
+          if (hist.length) row.appendChild(h('button', { class: 'btn link', type: 'button', onclick: function () { go(hist.pop()); } }, 'Kembali'));
+          box.appendChild(row);
+        } else {
+          box.appendChild(callout('ok', 'Kemungkinan besar ini: ' + n.r, n.d));
+          box.appendChild(h('p', { class: 'hint' }, 'Satu kalimat bisa punya beberapa kaidah. Coba lagi dengan bagian kalimat yang lain.'));
+          box.appendChild(h('button', { class: 'btn ghost', type: 'button', onclick: function () { hist = []; go('q1'); } }, 'Uji kalimat lain'));
+        }
+      }
+      go('q1');
+      return card('', h('h2', null, 'Uji cepat: ini kaidah apa ya?'), h('p', { class: 'hint' }, 'Bayangin satu kalimat anekdot, terus jawab pertanyaan ini satu-satu.'), box);
+    }
+    pick('t1');
+    return [pageHead('Materi', 'Tujuh kaidah bahasa anekdot, lengkap sama penanda, contoh, dan cara ngebedainnya.', '2 · Materi'), h('div', { class: 'stack' }, bar, panel)];
+  };
+
+  PAGES.formatif = function () {
+    var t = sumTP(1);
+    var sum = h('div', { class: 'sumbar', 'aria-live': 'polite' });
+    function upd() {
+      var x = sumTP(1); sum.textContent = '';
+      sum.appendChild(h('p', null, 'Soal dicek: ', h('strong', null, x.c + ' / 10'), ' · Nilai sementara: ', h('strong', null, x.s + ' / 24'), x.c ? ' (' + x.p + '%)' : ''));
+      if (x.c === 10) sum.appendChild(callout(x.s >= 18 ? 'ok' : 'warn', x.s >= 18 ? 'Siap lanjut ke Bedah Teks!' : 'Yuk ulangi bagian yang masih keliru', x.s >= 18 ? 'Nilaimu 18 atau lebih dari 24. Lanjut ke Bedah Teks 1.' : 'Nilaimu di bawah 18 dari 24. Baca lagi Materi dan coba Uji cepat, lalu betulin soal yang keliru. ' + D.tindak[1][kat(x.p).c]));
+    }
+    window.__refreshFormatif = upd;
+    var A = D.F.filter(function (c) { return c.bag === 'A'; }), B = D.F.filter(function (c) { return c.bag === 'B'; });
+    var out = [pageHead('Soal latihan', 'Nilai maksimal 24. Cek tiap soal setelah kamu jawab, kuncinya muncul bareng hasilnya.', '3 · Soal latihan'), sum,
+      card('', h('h2', null, 'Bagian A · Temukan kaidahnya'), h('p', { class: 'hint' }, 'Tulis kaidah dan penandanya. Satu kalimat boleh punya lebih dari satu kaidah.'), A.map(fItem)),
+      card('', h('h2', null, 'Bagian B · Bedain kaidah yang mirip'), h('p', { class: 'hint' }, 'Bingung? Pakai Uji cepat di Materi.'), B.map(fItem)),
+      card('', h('h2', null, 'Bagian C · Bedah paragraf'), textBlock([D.paragrafF9], 'Paragraf untuk F9 dan F10'), eItem('F9'), eItem('F10')),
+      h('div', { class: 'row' }, h('a', { class: 'btn primary', href: '#lk1' }, 'Lanjut ke Bedah Teks 1'), h('a', { class: 'btn ghost', href: '#rekap' }, 'Lihat hasilku'))];
+    setTimeout(upd, 0);
+    return out;
+  };
+
+  function annotator(tid) {
+    var T = D.teks[tid], list = S.ann[tid], selIdx = -1;
+    var segs = h('div', { class: 'segs', role: 'group', 'aria-label': 'Kalimat pada ' + T.judul });
+    var kSel = h('select', { id: 'ak' + tid }, D.kaidahOpsi.concat([['perintah', 'h. Kalimat perintah / seru (tambahan)']]).map(function (o) { return h('option', { value: o[0] }, o[1]); }));
+    var fIn = h('input', { id: 'af' + tid, type: 'text', placeholder: 'Fungsi dalam cerita (singkat)', autocomplete: 'off' });
+    var tbody = h('tbody'); var info = h('p', { class: 'hint', 'aria-live': 'polite' }, 'Pilih satu kalimat, tentukan kaidahnya, terus tambahin ke tabel.');
+    T.seg.forEach(function (sg, i) {
+      var b = h('button', { type: 'button', class: 'seg', 'aria-pressed': 'false' }, sg.t);
+      b.addEventListener('click', function () { selIdx = i; Array.prototype.forEach.call(segs.children, function (x, j) { x.setAttribute('aria-pressed', j === i ? 'true' : 'false'); }); info.textContent = 'Kalimat ' + (i + 1) + ' dipilih. Tentukan kaidahnya.'; });
+      segs.appendChild(b);
+    });
+    function draw() {
+      tbody.textContent = '';
+      list.forEach(function (a, i) {
+        var sg = T.seg[a.i], ok = sg.k.indexOf(a.k) >= 0;
+        var del = h('button', { class: 'btn link', type: 'button', 'aria-label': 'Hapus baris ' + (i + 1), onclick: function () { list.splice(i, 1); dirty(); draw(); } }, 'Hapus');
+        tbody.appendChild(h('tr', null, h('td', null, D.kaidahNama[a.k]), h('td', { class: 'q' }, '“' + (sg.t.length > 70 ? sg.t.slice(0, 68) + '…' : sg.t) + '”'), h('td', null, a.f || '—'),
+          h('td', null, ok ? chip('Tepat', 'k-cakap') : chip('Cek lagi', 'k-mulai'), ok ? null : h('div', { class: 'hint' }, 'Kaidah yang ada di kalimat ini: ' + sg.k.map(function (x) { return D.kaidahNama[x]; }).join(', ') + '.')), h('td', null, del)));
+      });
+    }
+    var add_ = h('button', { class: 'btn primary', type: 'button' }, 'Tambahin ke tabel');
+    add_.addEventListener('click', function () {
+      if (selIdx < 0) { toast('Pilih kalimatnya dulu ya.'); return; }
+      if (!kSel.value) { toast('Pilih kaidahnya dulu.'); return; }
+      list.push({ i: selIdx, k: kSel.value, f: fIn.value.trim() }); fIn.value = ''; dirty(); draw();
+    });
+    draw();
+    return card('', h('h2', null, 'Alat bedah teks'), h('p', { class: 'hint' }, 'Ketuk satu kalimat, pilih kaidah yang kamu temukan, tulis fungsinya, lalu tambahin. Langsung ada koreksinya!'), segs,
+      h('div', { class: 'row2' }, h('div', { class: 'field' }, h('label', { for: 'ak' + tid }, 'Kaidah'), kSel), h('div', { class: 'field' }, h('label', { for: 'af' + tid }, 'Fungsi'), fIn)), add_, info,
+      tableWrap(h('table', null, h('thead', null, h('tr', null, ['Kaidah', 'Kutipan', 'Fungsi', 'Cek', ''].map(function (x) { return h('th', { scope: 'col' }, x); }))), tbody)));
+  }
+
+  function lkQuestions(prefix, arr, nShow) {
+    return arr.slice(0, nShow || arr.length).map(function (q, i) {
+      var key = prefix + i, box = h('div', { class: 'keybox' });
+      var shown = !!S.lk[key];
+      function draw() {
+        box.textContent = '';
+        if (shown) { box.appendChild(callout('ok', 'Kunci', q.k)); }
+        else {
+          var b = h('button', { class: 'btn ghost', type: 'button', disabled: lc(S.a[key]).trim().length < 10 }, 'Lihat kunci');
+          b.addEventListener('click', function () { S.lk[key] = 1; shown = true; dirty(); draw(); });
+          box.appendChild(b); box.appendChild(h('span', { class: 'hint' }, ' Tulis jawabanmu dulu ya (min. 10 huruf).'));
+          box._b = b;
+        }
+      }
+      draw();
+      var ta = textarea(key, (i + 1) + '. ' + q.q, 3, { on: function (v) { if (box._b) box._b.disabled = lc(v).trim().length < 10; } });
+      return h('article', { class: 'q' }, ta, box);
+    });
+  }
+
+  PAGES.terpandu = function () {
+    S.vis.terpandu = true; dirty(); setTimeout(updateNav, 0);
+    return [pageHead('Contoh bedah teks', 'Lihat dulu gimana teks dibedah, baru nanti kamu coba sendiri.', '2 · Materi'),
+    card('', h('h2', null, 'Teks 1 · ' + D.teks.t1.judul), textBlock(D.teks.t1.seg.map(function (s) { return s.t; }))),
+    card('', h('h2', null, 'Dua contoh bedah lengkap'), tableWrap(h('table', null, h('thead', null, h('tr', null, ['1. Tandai', '2. Kutip', '3. Jelaskan', '4. Hubungkan'].map(function (x) { return h('th', { scope: 'col' }, x); }))), h('tbody', null, D.terpandu.map(function (r) { return h('tr', null, r.map(function (c) { return h('td', null, c); })); })))),
+      callout('info', 'Kerangka kalimat', '“Kaidah … terlihat pada kutipan ‘…’. Fungsinya adalah … sehingga … (humor/kritik).”'),
+      h('a', { class: 'btn primary', href: '#kartu' }, 'Lanjut ke Kartu kalimat'))];
+  };
+
+  PAGES.lk1 = function () {
+    return [pageHead('Bedah Teks 1 · “Pelayanan Kilat”', 'Kerjain sendiri dulu, terus cocokin sama kunci dan perbaiki jawabanmu.', '3 · Soal latihan'),
+    card('', textBlock(D.teks.t1.seg.map(function (s) { return s.t; }), 'Teks 1')), annotator('t1'),
+    card('', h('h2', null, 'Pertanyaan Bedah Teks 1'), lkQuestions('lk1_', D.LK1), h('a', { class: 'btn primary', href: '#lk2' }, 'Lanjut ke Bedah Teks 2'))];
+  };
+
+  PAGES.lk2 = function () {
+    return [pageHead('Bedah Teks 2 · “Kelas Bersih”', 'Soal nomor 5 dinilai pakai daftar cek, jadi jawabnya yang teliti ya.', '3 · Soal latihan'),
+    card('', textBlock(D.teks.t2.seg.map(function (s) { return s.t; }), 'Teks 2')), annotator('t2'),
+    card('', h('h2', null, 'Pertanyaan Bedah Teks 2'), lkQuestions('lk2_', D.LK2), eItem('L2-5'), h('a', { class: 'btn primary', href: '#sumatif' }, 'Lanjut ke Latihan Teks 3'))];
+  };
+
+  PAGES.sumatif = function () {
+    var ids = ['S1', 'S2', 'S3', 'S4', 'S5', 'S6'];
+    var sum = h('div', { class: 'sumbar', 'aria-live': 'polite' });
+    window.__refreshSumatif = function () { var s = 0, c = 0; ids.forEach(function (i) { if (S.sc[i]) { s += S.sc[i].s || 0; c++; } }); sum.textContent = ''; sum.appendChild(h('p', null, 'Soal dinilai: ', h('strong', null, c + ' / 6'), ' · Nilai sementara: ', h('strong', null, s + ' / 24'))); };
+    setTimeout(window.__refreshSumatif, 0);
+    return [pageHead('Latihan Teks 3 · “Jam Karet”', 'Teks baru, belum pernah dibahas. Kerjain sendiri dan tulis semua jawabanmu dulu sebelum buka pedoman. Jangan lupa alasan dan kutipannya.', '3 · Soal latihan'), sum,
+    card('', textBlock(D.teks.t3.par, 'Teks 3')),
+    ids.map(function (i) { return card('', eItem(i)); }),
+    uploadCard('Soal latihan beres! 🎉', 'Keren, semua soal latihan udah kamu lewati. Yuk unggah progresmu supaya tercatat di guru.'),
+    h('a', { class: 'btn primary', href: '#uji' }, 'Lanjut ke Uji pemahaman')];
+  };
+
+  function formUrl() { return (S.set && S.set.form) || FORM_URL || ''; }
+  PAGES.uji = function () {
+    var url = formUrl();
+    var online = navigator.onLine;
+    var openBtn = url
+      ? h('a', { class: 'btn primary', href: url, target: '_blank', rel: 'noopener', onclick: function () { setTimeout(function () { toast('Google Form dibuka di tab baru. Balik ke sini kalau udah selesai ya.'); }, 0); } }, '📝 Buka Google Form')
+      : h('button', { class: 'btn primary', type: 'button', disabled: 'disabled' }, '📝 Buka Google Form');
+    var done = h('button', { class: 'btn ' + (S.vis.uji ? 'ghost' : 'primary'), type: 'button', onclick: function () { S.vis.uji = !S.vis.uji; dirty(); updateNav(); render(); toast(S.vis.uji ? 'Mantap! Ditandai udah dikirim.' : 'Tanda dibatalkan.'); } }, S.vis.uji ? '✅ Sudah kukirim (ketuk untuk batal)' : 'Aku sudah mengirim Google Form');
+    return [pageHead('Uji pemahaman 🚩', 'Ini asesmen utamanya. Jawabanmu langsung terkirim ke guru lewat Google Form.', '4 · Uji pemahaman (asesmen)'),
+    h('div', { class: 'stack' },
+      card('', h('h2', null, 'Isi ujinya'), simpleTable(['Yang diuji', 'Pilihan ganda', 'Uraian', 'Menjodohkan', 'Poin'], [
+        ['Mengenali kaidah dan penandanya', '12 soal', '1 soal', '2 soal', '24'],
+        ['Menghubungkan kaidah dengan humor dan sindiran', '12 soal', '2 soal', '2 soal', '28'],
+        ['Menilai kesantunan kritik', '6 soal', '2 soal', '1 soal', '18'],
+        [h('strong', null, 'Total'), h('strong', null, '30 soal'), h('strong', null, '5 soal'), h('strong', null, '5 soal'), h('strong', null, '70')]]),
+        h('p', { class: 'hint' }, 'Nilai akhir = poin dibagi 70 dikali 100. Pilihan ganda dan menjodohkan dinilai otomatis, uraian dinilai guru pakai rubrik. Tiap soal berdiri sendiri, tanpa teks bersama untuk beberapa nomor.')),
+      card('', h('h2', null, 'Sebelum mulai ✅'), h('ul', { class: 'bul' },
+        h('li', null, 'Pastikan Materi dan Soal latihan udah kamu kerjain.'),
+        h('li', null, 'Siapin waktu sekitar 90 menit dan kertas coret. Kerjain sendiri ya, jujur aja.'),
+        h('li', null, 'Bagian ini butuh internet. Selain ini, semua fitur aplikasi tetap jalan tanpa internet.'),
+        h('li', null, 'Tulis nama dan kelas persis seperti di menu "Kenalan dulu", biar nilaimu nggak ketuker.'))),
+      card('upcard', h('h2', null, 'Kerjain ujinya di sini'),
+        !url ? callout('warn', 'Tautan belum diisi', 'Guru belum memasang tautan Google Form di aplikasi ini. Minta guru mengisinya (menu Pengaturan) atau minta tautannya langsung.') : null,
+        url && !online ? callout('info', 'Kamu lagi offline', 'Sambungkan internet dulu, baru buka Google Form-nya.') : null,
+        h('div', { class: 'row' }, openBtn, done),
+        h('p', { class: 'hint' }, 'Setelah menekan Kirim di Google Form, balik ke aplikasi dan tandai sudah dikirim.')),
+      h('div', { class: 'row' }, h('a', { class: 'btn ghost', href: '#sumatif' }, 'Kembali ke latihan'), h('a', { class: 'btn primary', href: '#refleksi' }, 'Lanjut ke Refleksi')))];
+  };
+
+  PAGES.refleksi = function () {
+    var opts = [['sudah', 'Sudah bisa'], ['hampir', 'Hampir bisa'], ['belum', 'Belum bisa']];
+    return [pageHead('Refleksi', 'Nggak dinilai. Jawab jujur aja ya.', '5 · Refleksi'),
+    card('', D.refl.map(function (q, i) { return textarea('rf' + i, (i + 1) + '. ' + q, 3); })),
+    card('', h('h2', null, 'Penilaianku sendiri'), D.reflSkala.map(function (t, i) { return radioGroup('rs' + i, t, opts); })),
+    uploadCard('Semua tahap beres! 🎉', 'Mantap, kamu sampai di akhir. Unggah progresmu supaya hasil lengkapnya masuk ke guru.'),
+    h('a', { class: 'btn primary', href: '#rekap' }, 'Lihat hasilku')];
+  };
+
+  /* ---------- rekap dan ekspor ---------- */
+  function payload() {
+    var items = [];
+    D.butir.forEach(function (b) {
+      var sc = S.sc[b[0]]; if (!sc) return;
+      var ans = S.a[b[0]]; ans = (ans && typeof ans === 'object') ? JSON.stringify(ans) : (ans || '');
+      items.push({ id: b[0], jenis: b[1], tp: b[2], level: b[3], skor: sc.s, maks: b[5], komponen: (sc.c || sc.got || []).join(''), jawaban: ans });
+    });
+    var t = [1, 2, 3].map(function (n) { var x = sumTP(n); return { tp: n, skor: x.s, maks: x.m, persen: x.p, kategori: x.c ? kat(x.p).n : '', lengkap: x.c === x.t }; });
+    return { app: 'kaidah-anekdot-v1', token: 'anekdot-unsoed', kode: S.p.kode || S.p.nama, nama: S.p.nama, jalur: S.jalur ? D.jalur[S.jalur].n : '', waktu: new Date().toISOString(), tp: t, items: items };
+  }
+
+  /* ---------- unggah progres ke Google Sheets (Apps Script) ---------- */
+  var BASE = 'https://script.google.com/macros/s/AKfycbzJd1u1aBkanWknh3jXckzlDgbbu-0vRGs-zKdi0DmFwbzf0DIRNQKvw9HuqaIBRf25/exec';
+  var CANDS = (BASE.indexOf('@') < 0) ? [BASE] : (function () { var o = [], x, y, z, L = ['l', 'I']; for (x = 0; x < 2; x++) for (y = 0; y < 2; y++) for (z = 0; z < 2; z++) o.push(BASE.replace('@', L[x]).replace('#', L[y]).replace('$', L[z])); return o; })();
+  function tmo(ms) { try { var c = new AbortController(); setTimeout(function () { c.abort(); }, ms); return c.signal; } catch (e) { return undefined; } }
+  function ping(u) { return fetch(u, { signal: tmo(12000) }).then(function (r) { return r.json(); }).then(function (j) { if (j && j.app === 'kaidah-anekdot-v1') return u; throw new Error('x'); }); }
+  function resolveUrl() {
+    if (S.set.url) return Promise.resolve(S.set.url);
+    var ps = CANDS.map(ping);
+    function keep(u) { S.set.url = u; save(); return u; }
+    if (Promise.any) return Promise.any(ps).then(keep);
+    return new Promise(function (res, rej) { var n = ps.length; ps.forEach(function (p) { p.then(function (u) { res(keep(u)); }, function () { if (--n === 0) rej(new Error('x')); }); }); });
+  }
+  function lastTxt() { return S.sync.last ? 'Terakhir diunggah: ' + S.sync.last : 'Belum pernah diunggah.'; }
+  function setStat(txt, kind) { Array.prototype.forEach.call(document.querySelectorAll('.upstat'), function (e) { e.textContent = txt; e.className = 'upstat ' + (kind || ''); }); }
+  var uploading = false;
+  function upload() {
+    if (uploading) return;
+    if (!S.p.kode && !S.p.nama) { setStat('Isi nama dulu di menu "Kenalan dulu" ya, biar guru tahu ini punya siapa.', 'bad'); return; }
+    if (!navigator.onLine) { S.sync.dirty = true; save(); netBadge(); setStat('Lagi offline. Tenang, nanti otomatis keunggah begitu internetnya nyala.', ''); return; }
+    uploading = true; setStat('Lagi ngunggah…', '');
+    var body = JSON.stringify(payload());
+    resolveUrl().then(function (url) {
+      return fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body, signal: tmo(25000) }).then(function (r) { return r.json(); }).then(
+        function (j) { return j && j.ok ? 'ok' : 'err'; },
+        function () { return fetch(url, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body }).then(function () { return 'opaque'; }); });
+    }).then(function (st) {
+      uploading = false;
+      if (st === 'err') { S.sync.dirty = true; save(); netBadge(); setStat('Server Sheets nolak datanya. Kasih tahu guru ya.', 'bad'); return; }
+      S.sync.dirty = false; S.sync.last = new Date().toLocaleString('id-ID'); save(); netBadge();
+      setStat('Beres! Progresmu sudah diunggah ✅ (' + S.sync.last + ')', 'ok');
+    }).catch(function () {
+      uploading = false; S.sync.dirty = true; save(); netBadge();
+      setStat('Belum bisa nyambung ke Sheets. Coba lagi nanti, atau kasih tahu guru kalau tetap gagal.', 'bad');
+    });
+  }
+  function uploadCard(title, text) {
+    if (IN_ARTIFACT) return card('upcard', h('h2', null, title), h('p', null, text), callout('info', 'Tombol unggah nggak aktif di pratinjau ini', 'Fitur unggah ke Google Sheets jalan di versi file HTML yang dibuka langsung atau di-host.'));
+    return card('upcard', h('h2', null, title), h('p', null, text),
+      h('button', { class: 'btn primary', type: 'button', onclick: upload }, '☁️ Unggah progres'),
+      h('p', { class: 'upstat', 'aria-live': 'polite' }, lastTxt()));
+  }
+
+  PAGES.rekap = function () {
+    var info = [
+      ['🔍', 'Mengenali kaidah', 1], ['🎭', 'Menghubungkan kaidah dengan humor dan sindiran', 2], ['⚖️', 'Menilai kesantunan kritik', 3]];
+    var cards = info.map(function (x) {
+      var n = x[2], r = sumTP(n), k = kat(r.p), has = r.c > 0, full = r.c === r.t;
+      return card('', h('h2', null, x[0] + ' ' + x[1]),
+        h('div', { class: 'bar', role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': String(has ? r.p : 0), 'aria-label': x[1] }, h('span', { class: 'k-' + (has ? k.c : 'none'), style: 'width:' + (has ? r.p : 0) + '%' })),
+        h('p', null, has ? [chip(k.n + ' · ' + r.p + '%', 'k-' + k.c), ' Nilai ' + r.s + ' dari ' + r.m + (full ? '' : ' (sementara, baru ' + r.c + ' dari ' + r.t + ' soal)')] : 'Belum ada soal yang dinilai.'),
+        has ? h('p', null, h('strong', null, 'Saran: '), D.tindak[n][k.c]) : null);
+    });
+    var sumS = 0, cS = 0; ['S1', 'S2', 'S3', 'S4', 'S5', 'S6'].forEach(function (i) { if (S.sc[i]) { sumS += S.sc[i].s; cS++; } });
+    return [pageHead('Hasil & ketercapaian 🌟', 'Ini gambaran kemampuanmu dari soal latihan di aplikasi. Nilai resmi ada di Uji pemahaman (Google Form), dihitung guru. Nggak usah deg-degan, ini buat bantu kamu tahu apa yang perlu diulang.'), h('div', { class: 'stack' }, cards,
+      card('', h('h2', null, 'Nilai Latihan Teks 3'), h('p', null, cS ? ['Nilai: ', h('strong', null, sumS + ' / 24'), ' · atau ', h('strong', null, Math.round(sumS / 24 * 100)), ' dari 100', (cS < 6 ? ' (sementara)' : '')] : 'Belum ada soal Latihan Teks 3 yang dinilai.')),
+      card('', h('h2', null, 'Uji pemahaman'), h('p', null, S.vis.uji ? 'Kamu sudah mengirim Google Form Uji pemahaman. Nilai resminya dari guru ya. 🎉' : 'Kamu belum menandai Uji pemahaman. Kerjain di menu Uji pemahaman, lalu nilai resminya dihitung guru dari Google Form.'), h('a', { class: 'btn ghost', href: '#uji' }, 'Ke Uji pemahaman')),
+      card('', h('h2', null, 'Arti kategorinya'), simpleTable(['Kategori', 'Persentase', 'Artinya'], D.kategori.map(function (k) { return [k.n, k.min ? '≥ ' + k.min : '< 50', k.m]; })), h('p', { class: 'hint' }, 'Kalau udah "Udah bisa" ke atas, berarti kamu sudah memenuhi target.')),
+      uploadCard('Unggah progres ☁️', 'Tekan tombol ini kapan pun kamu mau hasilmu tercatat di guru.'))];
+  };
+
+  PAGES.glosarium = function () {
+    var q = h('input', { id: 'gq', type: 'search', placeholder: 'Cari istilah…', autocomplete: 'off' }), list = h('dl', { class: 'gl' });
+    function draw() { list.textContent = ''; var t = lc(q.value); D.glosarium.filter(function (g) { return !t || lc(g[0] + ' ' + g[1]).indexOf(t) >= 0; }).forEach(function (g) { list.appendChild(h('dt', null, g[0])); list.appendChild(h('dd', null, g[1])); }); if (!list.children.length) list.appendChild(h('p', { class: 'hint' }, 'Tidak ada istilah yang cocok.')); }
+    q.addEventListener('input', draw); draw();
+    return [pageHead('Kamus mini 📖'), card('', h('div', { class: 'field' }, h('label', { for: 'gq' }, 'Cari'), q), list)];
+  };
+
+  PAGES.pengaturan = function () {
+    var url = h('input', { id: 'url', type: 'url', value: S.set.url, placeholder: 'kosongkan = otomatis', autocomplete: 'off' });
+    url.addEventListener('input', function () { S.set.url = url.value.trim(); saveSoon(); });
+    var rs = h('div');
+    function drawReset(armed) {
+      rs.textContent = '';
+      if (!armed) rs.appendChild(h('button', { class: 'btn danger', type: 'button', onclick: function () { drawReset(true); } }, 'Hapus semua data di HP ini'));
+      else { rs.appendChild(h('p', null, 'Yakin? Semua jawaban dan nilai di HP ini bakal terhapus.')); rs.appendChild(h('div', { class: 'row' }, h('button', { class: 'btn danger', type: 'button', onclick: function () { try { localStorage.removeItem(KEY); } catch (e) { } S = blank(); save(); toast('Data sudah dihapus.'); location.hash = '#beranda'; render(); } }, 'Ya, hapus'), h('button', { class: 'btn ghost', type: 'button', onclick: function () { drawReset(false); } }, 'Batal'))); }
+    }
+    drawReset(false);
+    var furl = h('input', { id: 'furl', type: 'url', value: S.set.form || '', placeholder: 'https://docs.google.com/forms/d/e/…/viewform', autocomplete: 'off' });
+    furl.addEventListener('input', function () { S.set.form = furl.value.trim(); saveSoon(); });
+    var formCard = card('', h('details', { class: 'det' }, h('summary', null, 'Tautan Google Form Uji pemahaman (buat guru)'), h('p', { class: 'hint' }, 'Tempel tautan Google Form di sini. Berlaku di perangkat ini saja. Supaya berlaku untuk semua siswa, isi baris FORM_URL di berkas HTML, atau bagikan tautan dengan akhiran ?f=tautan-form.'), h('div', { class: 'field' }, h('label', { for: 'furl' }, 'Tautan Google Form'), furl)));
+    var conn = IN_ARTIFACT ? null : card('', h('details', { class: 'det' }, h('summary', null, 'Sambungan ke Google Sheets (buat guru)'),
+      h('p', { class: 'hint' }, 'Biasanya nggak perlu diutak-atik: sambungan dicari otomatis. Isi kolom ini hanya kalau tombol Unggah progres gagal terus.'),
+      h('div', { class: 'field' }, h('label', { for: 'url' }, 'Alamat Apps Script (berakhiran /exec)'), url),
+      h('button', { class: 'btn ghost', type: 'button', onclick: function () { S.set.url = ''; url.value = ''; save(); toast('Balik ke sambungan otomatis.'); } }, 'Pakai sambungan otomatis')));
+    return [pageHead('Pengaturan ⚙️'), h('div', { class: 'stack' },
+      card('', h('h2', null, 'Tampilan'), h('div', { class: 'row' }, ['', 'light', 'dark'].map(function (t) { return h('button', { class: 'btn ' + (S.theme === t ? 'primary' : 'ghost'), type: 'button', 'aria-pressed': S.theme === t ? 'true' : 'false', onclick: function () { S.theme = t; save(); applyTheme(); render(); } }, t === '' ? 'Ikut HP' : (t === 'light' ? 'Terang' : 'Gelap')); }))),
+      formCard, conn,
+      card('', h('h2', null, 'Data di HP ini'), h('p', { class: 'hint' }, 'Jawabanmu disimpan di browser HP ini aja.'), rs),
+      h('p', { class: 'hint' }, h('a', { href: '#tentang' }, 'Info untuk guru dan dosen')))];
+  };
+
+  PAGES.tentang = function () {
+    return [pageHead('Info untuk guru dan dosen', 'Ringkasan tujuan pembelajaran, pemenuhan standar media, dan keterbatasan aplikasi.'),
+    card('', h('h2', null, 'Tujuan pembelajaran (tidak ditampilkan ke siswa)'), simpleTable(['TP', 'Level', 'Rumusan'], D.tp.map(function (t) { return ['TP ' + t.n, t.lv, t.t]; })), h('p', { class: 'hint' }, 'Kategori ketercapaian dihitung per TP: ≥90 Jago, ≥75 Udah bisa, ≥50 Hampir bisa, <50 Perlu latihan lagi. Ambang 75 adalah KKTP contoh; sesuaikan dengan satuan pendidikan.')),
+    card('', simpleTable(['Aspek', 'Wujud dalam media'], D.standar)),
+    card('', h('h2', null, 'Sumber'), h('ul', { class: 'bul' }, D.sumber.map(function (s) { return h('li', null, s); })))];
+  };
+
+  /* ---------- nav, router, tema ---------- */
+  var navEl, mainEl, curRoute = 'beranda';
+  function buildNav() {
+    navEl.textContent = '';
+    var grp = null, ul = null;
+    ROUTES.forEach(function (r) {
+      if (r.hide) return;
+      if (r.g) { navEl.appendChild(h('p', { class: 'ng' }, r.g)); ul = h('ul'); navEl.appendChild(ul); }
+      var a = h('a', { href: '#' + r.id, 'data-r': r.id, 'aria-current': r.id === curRoute ? 'page' : null }, h('span', { class: 'em', 'aria-hidden': 'true' }, r.e), h('span', null, r.t), isDone(r.id) ? h('span', { class: 'tick', 'aria-label': 'selesai' }, icon('ok')) : null);
+      a.addEventListener('click', function () { document.body.classList.remove('navopen'); });
+      ul.appendChild(h('li', null, a));
+    });
+  }
+  function updateNav() { buildNav(); if (window.__refreshFormatif && curRoute === 'formatif') window.__refreshFormatif(); if (window.__refreshSumatif && curRoute === 'sumatif') window.__refreshSumatif(); }
+  function render() {
+    var id = (location.hash || '#beranda').slice(1); if (!PAGES[id]) id = 'beranda';
+    curRoute = id; window.__refreshFormatif = null; window.__refreshSumatif = null;
+    mainEl.textContent = '';
+    var nodes = PAGES[id]();
+    (Array.isArray(nodes) ? nodes : [nodes]).forEach(function (n) { add(mainEl, n); });
+    document.title = (id === 'beranda' ? '' : routeTitle(id) + ' · ') + 'Belajar Kaidah Anekdot';
+    buildNav(); window.scrollTo(0, 0);
+    var ph = document.getElementById('ph'); if (ph) { try { ph.focus({ preventScroll: true }); } catch (e) { } }
+  }
+  function applyTheme() { var r = document.documentElement; if (S.theme) r.setAttribute('data-theme', S.theme); else r.removeAttribute('data-theme'); }
+  function netBadge() {
+    var b = document.getElementById('net'); if (!b) return;
+    var on = navigator.onLine; b.className = 'net ' + (on ? 'on' : 'off');
+    b.textContent = (on ? 'Online' : 'Offline') + (S.sync.dirty ? ' · belum terunggah' : '');
+  }
+  function init() {
+    navEl = document.getElementById('nav'); mainEl = document.getElementById('main');
+    applyTheme();
+    if (S.set.base !== BASE) { S.set.base = BASE; S.set.url = ''; save(); }
+    try { var f = new URLSearchParams(location.search).get('f'); if (f && /^https:\/\/(docs\.google\.com\/forms\/|forms\.gle\/)[\w\-\/?=&.%]+$/.test(f)) { S.set.form = f; save(); } } catch (e) { }
+    try { var u = new URLSearchParams(location.search).get('u'); if (u && /^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(u) && !IN_ARTIFACT) { S.set.url = u; save(); } } catch (e) { }
+    document.getElementById('menuBtn').addEventListener('click', function () { var o = document.body.classList.toggle('navopen'); this.setAttribute('aria-expanded', o ? 'true' : 'false'); });
+    document.getElementById('scrim').addEventListener('click', function () { document.body.classList.remove('navopen'); });
+    document.getElementById('themeBtn').addEventListener('click', function () { S.theme = S.theme === 'dark' ? 'light' : (S.theme === 'light' ? '' : 'dark'); save(); applyTheme(); toast('Tampilan: ' + (S.theme === 'dark' ? 'gelap' : (S.theme === 'light' ? 'terang' : 'ikuti perangkat'))); });
+    var lbT = null;
+    function labelTables() { Array.prototype.forEach.call(mainEl.querySelectorAll('table'), function (t) { var hs = Array.prototype.map.call(t.querySelectorAll('thead th'), function (x) { return x.textContent; }); Array.prototype.forEach.call(t.querySelectorAll('tbody tr'), function (r) { Array.prototype.forEach.call(r.children, function (c, i) { if (c.tagName === 'TD') c.setAttribute('data-label', hs[i] || ''); }); }); }); }
+    new MutationObserver(function () { clearTimeout(lbT); lbT = setTimeout(labelTables, 0); }).observe(mainEl, { childList: true, subtree: true });
+    window.addEventListener('hashchange', render);
+    window.addEventListener('online', function () { netBadge(); if (S.sync.dirty && !IN_ARTIFACT) upload(); });
+    window.addEventListener('offline', netBadge);
+    window.addEventListener('beforeunload', save);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') document.body.classList.remove('navopen'); });
+    render(); netBadge();
+    if (!IN_ARTIFACT && location.protocol.indexOf('http') === 0) {
+      if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function () { });
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+
+</script>
+</body>
+</html>
