@@ -1507,7 +1507,7 @@ D.sumber = [
   }
 
   /* ---------- unggah progres ke Google Sheets (Apps Script) ---------- */
-  var BASE = 'https://script.google.com/macros/s/AKfycbzJd1u1aBkanWknh3jXckzlDgbbu-0vRGs-zKdi0DmFwbzf0DIRNQKvw9HuqaIBRf25/exec';
+  var BASE = 'https://script.google.com/macros/s/AKfycbykCIpRdOrTSpzcuSt2BcXj_LZIIcAbGi5NM6l8Puo1DZo3xCBiSHuTIwkPXCR7uvyo/exec';
   var CANDS = (BASE.indexOf('@') < 0) ? [BASE] : (function () { var o = [], x, y, z, L = ['l', 'I']; for (x = 0; x < 2; x++) for (y = 0; y < 2; y++) for (z = 0; z < 2; z++) o.push(BASE.replace('@', L[x]).replace('#', L[y]).replace('$', L[z])); return o; })();
   function tmo(ms) { try { var c = new AbortController(); setTimeout(function () { c.abort(); }, ms); return c.signal; } catch (e) { return undefined; } }
   function ping(u) { return fetch(u, { signal: tmo(12000) }).then(function (r) { return r.json(); }).then(function (j) { if (j && j.app === 'kaidah-anekdot-v1') return u; throw new Error('x'); }); }
